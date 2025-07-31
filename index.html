@@ -223,6 +223,18 @@
             border-radius: 6px;
             font-size: 0.8rem;
             margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quantity-info {
+            background: #e0f2fe;
+            color: #0277bd;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
         }
 
         /* Badges */
@@ -273,7 +285,6 @@
             box-shadow: var(--shadow);
         }
 
-        .btn-action.btn-visit:hover { color: var(--success); border-color: var(--success); }
         .btn-action.btn-edit:hover { color: var(--primary); border-color: var(--primary); }
         .btn-action.btn-star:hover { color: var(--warning); border-color: var(--warning); }
         .btn-action.btn-star.starred { color: var(--warning); border-color: var(--warning); background: #fef3c7; }
@@ -480,8 +491,8 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Mô tả</label>
-                            <input type="text" class="form-control" id="linkDescription" placeholder="Mô tả ngắn gọn...">
+                            <label class="form-label">Số lượng sản phẩm</label>
+                            <input type="number" class="form-control" id="linkQuantity" placeholder="0" min="0">
                         </div>
                     </div>
                     
@@ -494,6 +505,11 @@
                             <label class="form-label">Thời gian kết thúc</label>
                             <input type="time" class="form-control" id="endTime">
                         </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Mô tả</label>
+                        <input type="text" class="form-control" id="linkDescription" placeholder="Mô tả ngắn gọn...">
                     </div>
                     
                     <div class="text-center">
@@ -547,20 +563,22 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Nguồn đầu vào</label>
-                            <select class="form-select" id="editLinkInputSource">
-                                <option value="">Chọn nguồn</option>
-                                <option value="account1">Nick Hoàng</option>
-                                <option value="account2">Nick Thoa</option>
-                                <option value="account3">Nick Trọng</option>
-                                <option value="account4">Nick Hải</option>
-                                <option value="account5">Nick PTrong</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Mô tả</label>
-                            <input type="text" class="form-control" id="editLinkDescription">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nguồn đầu vào</label>
+                                <select class="form-select" id="editLinkInputSource">
+                                    <option value="">Chọn nguồn</option>
+                                    <option value="account1">Nick Hoàng</option>
+                                    <option value="account2">Nick Thoa</option>
+                                    <option value="account3">Nick Trọng</option>
+                                    <option value="account4">Nick Hải</option>
+                                    <option value="account5">Nick PTrong</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Số lượng sản phẩm</label>
+                                <input type="number" class="form-control" id="editLinkQuantity" min="0">
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -571,6 +589,10 @@
                                 <label class="form-label">Thời gian kết thúc</label>
                                 <input type="time" class="form-control" id="editEndTime">
                             </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mô tả</label>
+                            <input type="text" class="form-control" id="editLinkDescription">
                         </div>
                     </form>
                 </div>
@@ -684,6 +706,7 @@
             
             const url = document.getElementById('linkUrl').value.trim();
             const inputSource = document.getElementById('linkInputSource').value;
+            const quantity = document.getElementById('linkQuantity').value;
             const description = document.getElementById('linkDescription').value.trim();
             const startTime = document.getElementById('startTime').value;
             const endTime = document.getElementById('endTime').value;
@@ -702,6 +725,7 @@
                     url: url,
                     title: extractTitleFromUrl(url),
                     inputSource: inputSource,
+                    quantity: quantity ? parseInt(quantity) : null,
                     description: description,
                     startTime: startTime,
                     endTime: endTime,
@@ -787,7 +811,7 @@
             container.innerHTML = links.map(link => `
                 <div class="link-item ${link.inputSource ? 'link-item-' + link.inputSource : ''} ${link.isMarked ? 'starred' : ''} fade-in">
                     <div class="d-flex justify-content-between align-items-start mb-3">
-                        <a href="#" class="link-title" onclick="window.visitLink('${link.id}', '${link.url}')">
+                        <a href="${link.url}" target="_blank" class="link-title">
                             ${link.title}
                             ${link.isMarked ? '<i class="fas fa-star text-warning ms-2"></i>' : ''}
                         </a>
@@ -795,389 +819,392 @@
                     
                     <div class="link-url">${link.url}</div>
                     
-                    ${link.description ? `<div class="link-description">${link.description}</div>` : ''}
-                    
-                    ${(link.startTime || link.endTime) ? `
-                        <div class="time-info">
+                    <div class="time-info">
+                        <div>
                             <i class="fas fa-clock me-1"></i>
                             ${link.startTime ? `${link.startTime}` : ''}
                             ${link.startTime && link.endTime ? ' - ' : ''}
                             ${link.endTime ? `${link.endTime}` : ''}
                         </div>
-                    ` : ''}
-                    
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            ${link.inputSource ? `<span class="badge badge-${link.inputSource}">
-                                ${getAccountName(link.inputSource)}
-                            </span>` : ''}
-                        </div>
-                        
-                        <div class="link-actions">
-                            <button class="btn-action btn-visit" onclick="window.visitLink('${link.id}', '${link.url}')" title="Truy cập">
-                                <i class="fas fa-external-link-alt"></i>
-                            </button>
-                            <button class="btn-action btn-edit" onclick="window.editLink('${link.id}')" title="Chỉnh sửa">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-action btn-star ${link.isMarked ? 'starred' : ''}" onclick="window.toggleMark('${link.id}')" title="${link.isMarked ? 'Bỏ yêu thích' : 'Yêu thích'}">
-                                <i class="fas fa-star"></i>
-                            </button>
-                            <button class="btn-action btn-copy" onclick="window.copyLink('${link.url}')" title="Sao chép">
-                                <i class="fas fa-copy"></i>
-                            </button>
-                            <button class="btn-action btn-delete" onclick="window.deleteLink('${link.id}')" title="Xóa">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
+                        ${link.quantity ? `
+                            <div class="quantity-info">
+                                <i class="fas fa-box me-1"></i>
+                                ${link.quantity} sản phẩm
+                            </div>
+                        ` : ''}
                     </div>
-                </div>
-            `).join('');
-        }
-
-        // Link actions
-        function visitLink(linkId, url) {
-            window.open(url, '_blank');
-        }
-
-        function editLink(linkId) {
-           const link = allLinks.find(l => l.id === linkId);
-           if (!link) return;
-           
-           document.getElementById('editLinkId').value = linkId;
-           document.getElementById('editLinkUrl').value = link.url;
-           document.getElementById('editLinkInputSource').value = link.inputSource || '';
-           document.getElementById('editLinkDescription').value = link.description || '';
-           document.getElementById('editStartTime').value = link.startTime || '';
-           document.getElementById('editEndTime').value = link.endTime || '';
-           
-           editModal.show();
-       }
-
-       async function handleEditSave() {
-           const linkId = document.getElementById('editLinkId').value;
-           const url = document.getElementById('editLinkUrl').value.trim();
-           const inputSource = document.getElementById('editLinkInputSource').value;
-           const description = document.getElementById('editLinkDescription').value.trim();
-           const startTime = document.getElementById('editStartTime').value;
-           const endTime = document.getElementById('editEndTime').value;
-           
-           try {
-               const linkRef = doc(db, 'links', linkId);
-               
-               await updateDoc(linkRef, {
-                   url: url,
-                   title: extractTitleFromUrl(url),
-                   inputSource: inputSource,
-                   description: description,
-                   startTime: startTime,
-                   endTime: endTime,
-                   updatedAt: new Date()
-               });
-               
-               editModal.hide();
-               showAlert('Cập nhật thành công!', 'success');
-               loadLinks();
-               
-           } catch (error) {
-               console.error('Error updating link:', error);
-               showAlert('Có lỗi khi cập nhật!', 'danger');
-           }
-       }
-
-       async function toggleMark(linkId) {
-           try {
-               const linkRef = doc(db, 'links', linkId);
-               const link = allLinks.find(l => l.id === linkId);
-               
-               await updateDoc(linkRef, {
-                   isMarked: !link.isMarked
-               });
-               
-               loadLinks();
-               
-           } catch (error) {
-               console.error('Error toggling mark:', error);
-               showAlert('Có lỗi khi cập nhật!', 'danger');
-           }
-       }
-
-       async function copyLink(url) {
-           try {
-               await navigator.clipboard.writeText(url);
-               showAlert('Đã sao chép link!', 'success');
-           } catch (error) {
-               showAlert('Không thể sao chép link!', 'danger');
-           }
-       }
-
-       async function deleteLink(linkId) {
-           if (!confirm('Bạn có chắc muốn xóa link này?')) return;
-           
-           try {
-               await deleteDoc(doc(db, 'links', linkId));
-               showAlert('Đã xóa link!', 'success');
-               loadLinks();
-               
-           } catch (error) {
-               console.error('Error deleting link:', error);
-               showAlert('Có lỗi khi xóa link!', 'danger');
-           }
-       }
-
-       // Utility functions
-       function getAccountName(account) {
-           const accounts = {
-               'account1': 'Nick Hoàng',
-               'account2': 'Nick Thoa',  
-               'account3': 'Nick Trọng',
-               'account4': 'Nick Hải',
-               'account5': 'Nick PTrong'
-           };
-           return accounts[account] || account;
-       }
-
-       function extractTitleFromUrl(url) {
-           try {
-               const urlObj = new URL(url);
-               return urlObj.hostname.replace('www.', '');
-           } catch {
-               return url;
-           }
-       }
-
-       function showAlert(message, type) {
-           // Remove existing alerts
-           const existingAlerts = document.querySelectorAll('.alert');
-           existingAlerts.forEach(alert => alert.remove());
-           
-           const alertDiv = document.createElement('div');
-           alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
-           alertDiv.style.cssText = `
-               top: 20px;
-               right: 20px;
-               z-index: 9999;
-               min-width: 280px;
-               box-shadow: var(--shadow-lg);
-           `;
-           
-           let icon = '';
-           switch(type) {
-               case 'success': icon = 'fas fa-check-circle'; break;
-               case 'danger': icon = 'fas fa-exclamation-circle'; break;
-               case 'warning': icon = 'fas fa-exclamation-triangle'; break;
-               case 'info': icon = 'fas fa-info-circle'; break;
-               default: icon = 'fas fa-bell';
-           }
-           
-           alertDiv.innerHTML = `
-               <div class="d-flex align-items-center">
-                   <i class="${icon} me-2"></i>
-                   <span>${message}</span>
+                    
+                    ${link.description ? `<div class="link-description">${link.description}</div>` : ''}
+                   
+                   <div class="d-flex justify-content-between align-items-center">
+                       <div>
+                           ${link.inputSource ? `<span class="badge badge-${link.inputSource}">
+                               ${getAccountName(link.inputSource)}
+                           </span>` : ''}
+                       </div>
+                       
+                       <div class="link-actions">
+                           <button class="btn-action btn-edit" onclick="window.editLink('${link.id}')" title="Chỉnh sửa">
+                               <i class="fas fa-edit"></i>
+                           </button>
+                           <button class="btn-action btn-star ${link.isMarked ? 'starred' : ''}" onclick="window.toggleMark('${link.id}')" title="${link.isMarked ? 'Bỏ yêu thích' : 'Yêu thích'}">
+                               <i class="fas fa-star"></i>
+                           </button>
+                           <button class="btn-action btn-copy" onclick="window.copyLink('${link.url}')" title="Sao chép">
+                               <i class="fas fa-copy"></i>
+                           </button>
+                           <button class="btn-action btn-delete" onclick="window.deleteLink('${link.id}')" title="Xóa">
+                               <i class="fas fa-trash"></i>
+                           </button>
+                       </div>
+                   </div>
                </div>
-               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-           `;
-           
-           document.body.appendChild(alertDiv);
-           
-           // Auto remove after 4 seconds
-           setTimeout(() => {
-               if (alertDiv.parentNode) {
-                   alertDiv.classList.remove('show');
-                   setTimeout(() => alertDiv.remove(), 150);
-               }
-           }, 4000);
+           `).join('');
        }
 
-       // Make functions global
-       window.visitLink = visitLink;
-       window.editLink = editLink;
-       window.toggleMark = toggleMark;
-       window.copyLink = copyLink;
-       window.deleteLink = deleteLink;
+       // Link actions
+       function editLink(linkId) {
+          const link = allLinks.find(l => l.id === linkId);
+          if (!link) return;
+          
+          document.getElementById('editLinkId').value = linkId;
+          document.getElementById('editLinkUrl').value = link.url;
+          document.getElementById('editLinkInputSource').value = link.inputSource || '';
+          document.getElementById('editLinkQuantity').value = link.quantity || '';
+          document.getElementById('editLinkDescription').value = link.description || '';
+          document.getElementById('editStartTime').value = link.startTime || '';
+          document.getElementById('editEndTime').value = link.endTime || '';
+          
+          editModal.show();
+      }
 
-       // Smooth scroll for better UX
-       document.documentElement.style.scrollBehavior = 'smooth';
+      async function handleEditSave() {
+          const linkId = document.getElementById('editLinkId').value;
+          const url = document.getElementById('editLinkUrl').value.trim();
+          const inputSource = document.getElementById('editLinkInputSource').value;
+          const quantity = document.getElementById('editLinkQuantity').value;
+          const description = document.getElementById('editLinkDescription').value.trim();
+          const startTime = document.getElementById('editStartTime').value;
+          const endTime = document.getElementById('editEndTime').value;
+          
+          try {
+              const linkRef = doc(db, 'links', linkId);
+              
+              await updateDoc(linkRef, {
+                  url: url,
+                  title: extractTitleFromUrl(url),
+                  inputSource: inputSource,
+                  quantity: quantity ? parseInt(quantity) : null,
+                  description: description,
+                  startTime: startTime,
+                  endTime: endTime,
+                  updatedAt: new Date()
+              });
+              
+              editModal.hide();
+              showAlert('Cập nhật thành công!', 'success');
+              loadLinks();
+              
+          } catch (error) {
+              console.error('Error updating link:', error);
+              showAlert('Có lỗi khi cập nhật!', 'danger');
+          }
+      }
 
-       // Add loading states for better feedback
-       function setButtonLoading(button, loading = true) {
-           if (loading) {
-               button.disabled = true;
-               const originalText = button.innerHTML;
-               button.dataset.originalText = originalText;
-               button.innerHTML = '<div class="spinner me-2"></div>Đang xử lý...';
-           } else {
-               button.disabled = false;
-               button.innerHTML = button.dataset.originalText;
-           }
-       }
+      async function toggleMark(linkId) {
+          try {
+              const linkRef = doc(db, 'links', linkId);
+              const link = allLinks.find(l => l.id === linkId);
+              
+              await updateDoc(linkRef, {
+                  isMarked: !link.isMarked
+              });
+              
+              loadLinks();
+              
+          } catch (error) {
+              console.error('Error toggling mark:', error);
+              showAlert('Có lỗi khi cập nhật!', 'danger');
+          }
+      }
 
-       // Enhanced form validation
-       function validateForm(form) {
-           const inputs = form.querySelectorAll('input[required]');
-           let isValid = true;
-           
-           inputs.forEach(input => {
-               if (!input.value.trim()) {
-                   input.classList.add('is-invalid');
-                   isValid = false;
-               } else {
-                   input.classList.remove('is-invalid');
-               }
-           });
-           
-           return isValid;
-       }
+      async function copyLink(url) {
+          try {
+              await navigator.clipboard.writeText(url);
+              showAlert('Đã sao chép link!', 'success');
+          } catch (error) {
+              showAlert('Không thể sao chép link!', 'danger');
+          }
+      }
 
-       // Auto-save draft (optional enhancement)
-       let draftTimer;
-       function saveDraft() {
-           const formData = {
-               url: document.getElementById('linkUrl').value,
-               inputSource: document.getElementById('linkInputSource').value,
-               description: document.getElementById('linkDescription').value,
-               startTime: document.getElementById('startTime').value,
-               endTime: document.getElementById('endTime').value
-           };
-           
-           if (formData.url.trim()) {
-               localStorage.setItem('linkDraft', JSON.stringify(formData));
-           }
-       }
+      async function deleteLink(linkId) {
+          if (!confirm('Bạn có chắc muốn xóa link này?')) return;
+          
+          try {
+              await deleteDoc(doc(db, 'links', linkId));
+              showAlert('Đã xóa link!', 'success');
+              loadLinks();
+              
+          } catch (error) {
+              console.error('Error deleting link:', error);
+              showAlert('Có lỗi khi xóa link!', 'danger');
+          }
+      }
 
-       function loadDraft() {
-           const draft = localStorage.getItem('linkDraft');
-           if (draft) {
-               const data = JSON.parse(draft);
-               document.getElementById('linkUrl').value = data.url || '';
-               document.getElementById('linkInputSource').value = data.inputSource || '';
-               document.getElementById('linkDescription').value = data.description || '';
-               document.getElementById('startTime').value = data.startTime || '';
-               document.getElementById('endTime').value = data.endTime || '';
-           }
-       }
+      // Utility functions
+      function getAccountName(account) {
+          const accounts = {
+              'account1': 'Nick Hoàng',
+              'account2': 'Nick Thoa',  
+              'account3': 'Nick Trọng',
+              'account4': 'Nick Hải',
+              'account5': 'Nick PTrong'
+          };
+          return accounts[account] || account;
+      }
 
-       function clearDraft() {
-           localStorage.removeItem('linkDraft');
-       }
+      function extractTitleFromUrl(url) {
+          try {
+              const urlObj = new URL(url);
+              return urlObj.hostname.replace('www.', '');
+          } catch {
+              return url;
+          }
+      }
 
-       // Set up auto-save
-       ['linkUrl', 'linkInputSource', 'linkDescription', 'startTime', 'endTime'].forEach(id => {
-           const element = document.getElementById(id);
-           element.addEventListener('input', () => {
-               clearTimeout(draftTimer);
-               draftTimer = setTimeout(saveDraft, 1000);
-           });
-       });
+      function showAlert(message, type) {
+          // Remove existing alerts
+          const existingAlerts = document.querySelectorAll('.alert');
+          existingAlerts.forEach(alert => alert.remove());
+          
+          const alertDiv = document.createElement('div');
+          alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+          alertDiv.style.cssText = `
+              top: 20px;
+              right: 20px;
+              z-index: 9999;
+              min-width: 280px;
+              box-shadow: var(--shadow-lg);
+          `;
+          
+          let icon = '';
+          switch(type) {
+              case 'success': icon = 'fas fa-check-circle'; break;
+              case 'danger': icon = 'fas fa-exclamation-circle'; break;
+              case 'warning': icon = 'fas fa-exclamation-triangle'; break;
+              case 'info': icon = 'fas fa-info-circle'; break;
+              default: icon = 'fas fa-bell';
+          }
+          
+          alertDiv.innerHTML = `
+              <div class="d-flex align-items-center">
+                  <i class="${icon} me-2"></i>
+                  <span>${message}</span>
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          `;
+          
+          document.body.appendChild(alertDiv);
+          
+          // Auto remove after 4 seconds
+          setTimeout(() => {
+              if (alertDiv.parentNode) {
+                  alertDiv.classList.remove('show');
+                  setTimeout(() => alertDiv.remove(), 150);
+              }
+          }, 4000);
+      }
 
-       // Load draft on page load
-       document.addEventListener('DOMContentLoaded', loadDraft);
+      // Make functions global
+      window.editLink = editLink;
+      window.toggleMark = toggleMark;
+      window.copyLink = copyLink;
+      window.deleteLink = deleteLink;
 
-       // Clear draft on successful form submission
-       addLinkForm.addEventListener('submit', () => {
-           setTimeout(clearDraft, 1000);
-       });
+      // Smooth scroll for better UX
+      document.documentElement.style.scrollBehavior = 'smooth';
 
-       // Keyboard shortcuts
-       document.addEventListener('keydown', (e) => {
-           // Ctrl/Cmd + Enter to submit form
-           if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-               const activeElement = document.activeElement;
-               if (activeElement && activeElement.form === addLinkForm) {
-                   e.preventDefault();
-                   addLinkForm.dispatchEvent(new Event('submit'));
-               }
-           }
-           
-           // Escape to close modal
-           if (e.key === 'Escape' && editModal._isShown) {
-               editModal.hide();
-           }
-       });
+      // Add loading states for better feedback
+      function setButtonLoading(button, loading = true) {
+          if (loading) {
+              button.disabled = true;
+              const originalText = button.innerHTML;
+              button.dataset.originalText = originalText;
+              button.innerHTML = '<div class="spinner me-2"></div>Đang xử lý...';
+          } else {
+              button.disabled = false;
+              button.innerHTML = button.dataset.originalText;
+          }
+      }
 
-       // Focus management
-       document.getElementById('editModal').addEventListener('shown.bs.modal', () => {
-           document.getElementById('editLinkUrl').focus();
-       });
+      // Enhanced form validation
+      function validateForm(form) {
+          const inputs = form.querySelectorAll('input[required]');
+          let isValid = true;
+          
+          inputs.forEach(input => {
+              if (!input.value.trim()) {
+                  input.classList.add('is-invalid');
+                  isValid = false;
+              } else {
+                  input.classList.remove('is-invalid');
+              }
+          });
+          
+          return isValid;
+      }
 
-       // Enhanced error handling with retry
-       let retryCount = 0;
-       const maxRetries = 3;
+      // Auto-save draft (optional enhancement)
+      let draftTimer;
+      function saveDraft() {
+          const formData = {
+              url: document.getElementById('linkUrl').value,
+              inputSource: document.getElementById('linkInputSource').value,
+              quantity: document.getElementById('linkQuantity').value,
+              description: document.getElementById('linkDescription').value,
+              startTime: document.getElementById('startTime').value,
+              endTime: document.getElementById('endTime').value
+          };
+          
+          if (formData.url.trim()) {
+              localStorage.setItem('linkDraft', JSON.stringify(formData));
+          }
+      }
 
-       async function retryOperation(operation, context = '') {
-           try {
-               retryCount = 0;
-               return await operation();
-           } catch (error) {
-               if (retryCount < maxRetries && error.code !== 'permission-denied') {
-                   retryCount++;
-                   showAlert(`Thử lại lần ${retryCount}/${maxRetries}...`, 'info');
-                   setTimeout(() => retryOperation(operation, context), 1000 * retryCount);
-               } else {
-                   console.error(`Error in ${context}:`, error);
-                   showAlert(`Lỗi: ${error.message}`, 'danger');
-               }
-           }
-       }
+      function loadDraft() {
+          const draft = localStorage.getItem('linkDraft');
+          if (draft) {
+              const data = JSON.parse(draft);
+              document.getElementById('linkUrl').value = data.url || '';
+              document.getElementById('linkInputSource').value = data.inputSource || '';
+              document.getElementById('linkQuantity').value = data.quantity || '';
+              document.getElementById('linkDescription').value = data.description || '';
+              document.getElementById('startTime').value = data.startTime || '';
+              document.getElementById('endTime').value = data.endTime || '';
+          }
+      }
 
-       // Performance optimization: debounce search
-       function debounce(func, wait) {
-           let timeout;
-           return function executedFunction(...args) {
-               const later = () => {
-                   clearTimeout(timeout);
-                   func(...args);
-               };
-               clearTimeout(timeout);
-               timeout = setTimeout(later, wait);
-           };
-       }
+      function clearDraft() {
+          localStorage.removeItem('linkDraft');
+      }
 
-       // Add search functionality (optional)
-       function addSearchFeature() {
-           const searchInput = document.createElement('input');
-           searchInput.type = 'text';
-           searchInput.className = 'form-control mb-3';
-           searchInput.placeholder = 'Tìm kiếm links...';
-           searchInput.id = 'searchInput';
-           
-           const firstFolderContent = document.querySelector('.folder-content');
-           firstFolderContent.insertBefore(searchInput, firstFolderContent.firstChild);
-           
-           const debouncedSearch = debounce((query) => {
-               filterLinks(query);
-           }, 300);
-           
-           searchInput.addEventListener('input', (e) => {
-               debouncedSearch(e.target.value);
-           });
-       }
+      // Set up auto-save
+      ['linkUrl', 'linkInputSource', 'linkQuantity', 'linkDescription', 'startTime', 'endTime'].forEach(id => {
+          const element = document.getElementById(id);
+          element.addEventListener('input', () => {
+              clearTimeout(draftTimer);
+              draftTimer = setTimeout(saveDraft, 1000);
+          });
+      });
 
-       function filterLinks(query) {
-           if (!query.trim()) {
-               displayLinks();
-               return;
-           }
-           
-           const filtered = allLinks.filter(link => 
-               link.title.toLowerCase().includes(query.toLowerCase()) ||
-               link.url.toLowerCase().includes(query.toLowerCase()) ||
-               (link.description && link.description.toLowerCase().includes(query.toLowerCase()))
-           );
-           
-           const unmarkedFiltered = filtered.filter(link => !link.isMarked);
-           const markedFiltered = filtered.filter(link => link.isMarked);
-           
-           document.getElementById('unmarkedCount').textContent = unmarkedFiltered.length;
-           document.getElementById('markedCount').textContent = markedFiltered.length;
-           
-           renderLinks(unmarkedFiltered, unmarkedLinksList, 'Không tìm thấy link nào');
-           renderLinks(markedFiltered, markedLinksList, 'Không tìm thấy link yêu thích nào');
-       }
+      // Load draft on page load
+      document.addEventListener('DOMContentLoaded', loadDraft);
 
-       // Initialize search feature
-       setTimeout(addSearchFeature, 1000);
+      // Clear draft on successful form submission
+      addLinkForm.addEventListener('submit', () => {
+          setTimeout(clearDraft, 1000);
+      });
 
-   </script>
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+          // Ctrl/Cmd + Enter to submit form
+          if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+              const activeElement = document.activeElement;
+              if (activeElement && activeElement.form === addLinkForm) {
+                  e.preventDefault();
+                  addLinkForm.dispatchEvent(new Event('submit'));
+              }
+          }
+          
+          // Escape to close modal
+          if (e.key === 'Escape' && editModal._isShown) {
+              editModal.hide();
+          }
+      });
+
+      // Focus management
+      document.getElementById('editModal').addEventListener('shown.bs.modal', () => {
+          document.getElementById('editLinkUrl').focus();
+      });
+
+      // Enhanced error handling with retry
+      let retryCount = 0;
+      const maxRetries = 3;
+
+      async function retryOperation(operation, context = '') {
+          try {
+              retryCount = 0;
+              return await operation();
+          } catch (error) {
+              if (retryCount < maxRetries && error.code !== 'permission-denied') {
+                  retryCount++;
+                  showAlert(`Thử lại lần ${retryCount}/${maxRetries}...`, 'info');
+                  setTimeout(() => retryOperation(operation, context), 1000 * retryCount);
+              } else {
+                  console.error(`Error in ${context}:`, error);
+                  showAlert(`Lỗi: ${error.message}`, 'danger');
+              }
+          }
+      }
+
+      // Performance optimization: debounce search
+      function debounce(func, wait) {
+          let timeout;
+          return function executedFunction(...args) {
+              const later = () => {
+                  clearTimeout(timeout);
+                  func(...args);
+              };
+              clearTimeout(timeout);
+              timeout = setTimeout(later, wait);
+          };
+      }
+
+      // Add search functionality (optional)
+      function addSearchFeature() {
+          const searchInput = document.createElement('input');
+          searchInput.type = 'text';
+          searchInput.className = 'form-control mb-3';
+          searchInput.placeholder = 'Tìm kiếm links...';
+          searchInput.id = 'searchInput';
+          
+          const firstFolderContent = document.querySelector('.folder-content');
+          firstFolderContent.insertBefore(searchInput, firstFolderContent.firstChild);
+          
+          const debouncedSearch = debounce((query) => {
+              filterLinks(query);
+          }, 300);
+          
+          searchInput.addEventListener('input', (e) => {
+              debouncedSearch(e.target.value);
+          });
+      }
+
+      function filterLinks(query) {
+          if (!query.trim()) {
+              displayLinks();
+              return;
+          }
+          
+          const filtered = allLinks.filter(link => 
+              link.title.toLowerCase().includes(query.toLowerCase()) ||
+              link.url.toLowerCase().includes(query.toLowerCase()) ||
+              (link.description && link.description.toLowerCase().includes(query.toLowerCase()))
+          );
+          
+          const unmarkedFiltered = filtered.filter(link => !link.isMarked);
+          const markedFiltered = filtered.filter(link => link.isMarked);
+          
+          document.getElementById('unmarkedCount').textContent = unmarkedFiltered.length;
+          document.getElementById('markedCount').textContent = markedFiltered.length;
+          
+          renderLinks(unmarkedFiltered, unmarkedLinksList, 'Không tìm thấy link nào');
+          renderLinks(markedFiltered, markedLinksList, 'Không tìm thấy link yêu thích nào');
+      }
+
+      // Initialize search feature
+      setTimeout(addSearchFeature, 1000);
+
+  </script>
 </body>
 </html>

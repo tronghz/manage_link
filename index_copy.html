@@ -3,216 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Manager Pro</title>
+    <title>Link Manager</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --warning-gradient: linear-gradient(135deg, #fdbb2d 0%, #22c1c3 100%);
-            --dark-gradient: linear-gradient(135deg, #434343 0%, #000000 100%);
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --hover-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --secondary: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--dark);
+            line-height: 1.6;
         }
 
-        .main-header {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 2rem 0;
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: var(--shadow);
+            padding: 1rem 0;
             margin-bottom: 2rem;
-            box-shadow: var(--card-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .main-header h1 {
+        .header h1 {
+            color: var(--primary);
+            font-size: 1.75rem;
             font-weight: 700;
-            font-size: 2.5rem;
             margin: 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
+        .header p {
+            color: var(--secondary);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Cards */
         .card {
             border: none;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            background: white;
+            transition: all 0.2s ease;
         }
 
         .card:hover {
-            box-shadow: var(--hover-shadow);
-            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-1px);
         }
 
         .card-header {
-            background: var(--primary-gradient);
-            color: white;
-            border-radius: 20px 20px 0 0 !important;
-            padding: 1.5rem;
-            border: none;
+            background: var(--light);
+            border-bottom: 1px solid var(--border);
+            border-radius: 12px 12px 0 0 !important;
+            padding: 1rem 1.5rem;
         }
 
         .card-header h5 {
-            margin: 0;
+            color: var(--dark);
+            font-size: 1rem;
             font-weight: 600;
-            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Forms */
+        .form-label {
+            color: var(--dark);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
 
         .form-control, .form-select {
-            border-radius: 15px;
-            border: 2px solid #e9ecef;
-            padding: 0.75rem 1rem;
-            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            background: white;
         }
 
         .form-control:focus, .form-select:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-            transform: translateY(-2px);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
+        /* Buttons */
         .btn {
-            border-radius: 25px;
-            padding: 0.5rem 1.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
             border: none;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 0.85rem;
-        }
-
-        .btn-primary {
-            background: var(--primary-gradient);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-        }
-
-        .btn-success {
-            background: var(--success-gradient);
-            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
-        }
-
-        .btn-warning {
-            background: var(--warning-gradient);
-            box-shadow: 0 4px 15px rgba(253, 187, 45, 0.4);
-        }
-
-        .btn-danger {
-            background: var(--secondary-gradient);
-            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
-        }
-
-        .btn-dark {
-            background: var(--dark-gradient);
-            box-shadow: 0 4px 15px rgba(67, 67, 67, 0.4);
+            cursor: pointer;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .btn-outline-primary {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* Link Items */
         .link-item {
             background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--card-shadow);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .link-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--primary-gradient);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            transition: all 0.2s ease;
+            border-left: 4px solid var(--border);
         }
 
         .link-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .link-item.starred {
+            border-left-color: var(--warning);
         }
 
         .link-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #2c3e50;
+            color: var(--dark);
+            font-size: 1.1rem;
+            font-weight: 600;
             text-decoration: none;
-            margin-bottom: 0.5rem;
             display: block;
+            margin-bottom: 0.5rem;
         }
 
         .link-title:hover {
-            color: #667eea;
+            color: var(--primary);
         }
 
         .link-url {
-            color: #7f8c8d;
-            font-size: 0.95rem;
+            color: var(--secondary);
+            font-size: 0.85rem;
             word-break: break-all;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
+            background: var(--light);
+            padding: 0.5rem;
+            border-radius: 6px;
         }
 
         .link-description {
-            color: #34495e;
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            color: var(--dark);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
             line-height: 1.5;
         }
 
         .time-info {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: #495057;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
         }
 
-        .time-info strong {
-            color: #2c3e50;
-        }
-
+        /* Badges */
         .badge {
             border-radius: 20px;
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 0.75rem;
             font-size: 0.75rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
+            font-weight: 500;
         }
 
-        .badge-input {
-            background: var(--success-gradient);
-            color: white;
-        }
+        .badge-account1 { background: #3b82f6; color: white; }
+        .badge-account2 { background: #ef4444; color: white; }
+        .badge-account3 { background: #10b981; color: white; }
+        .badge-account4 { background: #f59e0b; color: white; }
+        .badge-account5 { background: #8b5cf6; color: white; }
 
-        .link-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #ecf0f1;
-        }
+        /* Link item colors */
+        .link-item-account1 { border-left-color: #3b82f6; }
+        .link-item-account2 { border-left-color: #ef4444; }
+        .link-item-account3 { border-left-color: #10b981; }
+        .link-item-account4 { border-left-color: #f59e0b; }
+        .link-item-account5 { border-left-color: #8b5cf6; }
 
+        /* Actions */
         .link-actions {
             display: flex;
             gap: 0.5rem;
@@ -220,173 +254,197 @@
         }
 
         .btn-action {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 0;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--secondary);
         }
 
         .btn-action:hover {
-            transform: scale(1.1) translateY(-2px);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
         }
 
-        .btn-visit {
-            background: var(--success-gradient);
-            color: white;
-        }
+        .btn-action.btn-visit:hover { color: var(--success); border-color: var(--success); }
+        .btn-action.btn-edit:hover { color: var(--primary); border-color: var(--primary); }
+        .btn-action.btn-star:hover { color: var(--warning); border-color: var(--warning); }
+        .btn-action.btn-star.starred { color: var(--warning); border-color: var(--warning); background: #fef3c7; }
+        .btn-action.btn-copy:hover { color: var(--secondary); border-color: var(--secondary); }
+        .btn-action.btn-delete:hover { color: var(--danger); border-color: var(--danger); }
 
-        .btn-edit {
-            background: var(--primary-gradient);
-            color: white;
-        }
-
-        .btn-star {
-            background: var(--warning-gradient);
-            color: white;
-        }
-
-        .btn-star.starred {
-            background: #ffc107;
-            color: #212529;
-            box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
-        }
-
-        .btn-copy {
-            background: var(--dark-gradient);
-            color: white;
-        }
-
-        .btn-delete {
-            background: var(--secondary-gradient);
-            color: white;
-        }
-
+        /* Folders */
         .folder-section {
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .folder-header {
-            background: var(--primary-gradient);
+            background: var(--primary);
             color: white;
-            padding: 1.5rem 2rem;
-            border-radius: 20px 20px 0 0;
-            margin-bottom: 0;
+            padding: 1rem 1.5rem;
+            border-radius: 12px 12px 0 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
+        .folder-header.starred {
+            background: var(--warning);
+        }
+
         .folder-header h5 {
             margin: 0;
+            font-size: 1rem;
             font-weight: 600;
-            font-size: 1.3rem;
         }
 
         .folder-count {
             background: rgba(255,255,255,0.2);
             padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
         .folder-content {
-            background: rgba(255,255,255,0.95);
-            border-radius: 0 0 20px 20px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
+            background: white;
+            border-radius: 0 0 12px 12px;
+            padding: 1.5rem;
         }
 
+        /* Empty state */
         .empty-state {
             text-align: center;
-            padding: 4rem 2rem;
-            color: #7f8c8d;
+            padding: 3rem 1rem;
+            color: var(--secondary);
         }
 
         .empty-state i {
-            font-size: 4rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             opacity: 0.3;
         }
 
-        .input-group .btn {
-            border-radius: 0 15px 15px 0;
-        }
-
-        .input-group .form-control {
-            border-radius: 15px 0 0 15px;
-        }
-
+        /* Modal */
         .modal-content {
-            border-radius: 20px;
+            border-radius: 12px;
             border: none;
-            box-shadow: var(--hover-shadow);
+            box-shadow: var(--shadow-lg);
         }
 
         .modal-header {
-            background: var(--primary-gradient);
-            color: white;
-            border-radius: 20px 20px 0 0;
-            padding: 2rem;
+            background: var(--light);
+            border-bottom: 1px solid var(--border);
+            border-radius: 12px 12px 0 0;
+            padding: 1.5rem;
         }
 
         .modal-title {
+            color: var(--dark);
+            font-size: 1.1rem;
             font-weight: 600;
-            font-size: 1.3rem;
         }
 
-        .btn-close {
-            filter: brightness(0) invert(1);
+        .modal-body {
+            padding: 1.5rem;
         }
 
+        .modal-footer {
+            border-top: 1px solid var(--border);
+            padding: 1.5rem;
+        }
+
+        /* Input group */
+        .input-group .btn {
+            border-radius: 0 8px 8px 0;
+        }
+
+        .input-group .form-control {
+            border-radius: 8px 0 0 8px;
+        }
+
+        /* Alerts */
         .alert {
-            border-radius: 15px;
+            border-radius: 8px;
             border: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-size: 0.9rem;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            .main-header h1 {
-                font-size: 2rem;
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
             }
             
             .link-item {
-                padding: 1.5rem;
-            }
-            
-            .link-meta {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
+                padding: 1rem;
             }
             
             .link-actions {
                 justify-content: center;
-                width: 100%;
+                margin-top: 1rem;
             }
         }
 
+        /* Animations */
         .fade-in {
-            animation: fadeIn 0.5s ease-in;
+            animation: fadeIn 0.3s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading state */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            color: var(--secondary);
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-top: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <div class="main-header">
+    <div class="header">
         <div class="container">
             <div class="text-center">
-                <h1><i class="fas fa-link"></i> Link Manager Pro</h1>
-                <p class="mb-0">Quản lý và tổ chức links một cách thông minh</p>
+                <h1><i class="fas fa-link me-2"></i>Link Manager</h1>
+                <p>Quản lý và tổ chức links một cách đơn giản</p>
             </div>
         </div>
     </div>
@@ -395,26 +453,25 @@
         <!-- Form thêm link -->
         <div class="card mb-4 fade-in">
             <div class="card-header">
-                <h5><i class="fas fa-plus-circle"></i> Thêm Link Mới</h5>
+                <h5><i class="fas fa-plus me-2"></i>Thêm Link Mới</h5>
             </div>
             <div class="card-body">
                 <form id="addLinkForm">
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label class="form-label fw-bold">URL *</label>
-                            <div class="input-group">
-                                <input type="url" class="form-control" id="linkUrl" required placeholder="https://example.com">
-                                <button class="btn btn-dark" type="button" id="pasteUrlBtn" title="Dán URL">
-                                    <i class="fas fa-paste"></i>
-                                </button>
-                            </div>
+                    <div class="mb-3">
+                        <label class="form-label">URL <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <input type="url" class="form-control" id="linkUrl" required placeholder="https://example.com">
+                            <button class="btn btn-outline-primary" type="button" id="pasteUrlBtn" title="Dán URL">
+                                <i class="fas fa-paste"></i>
+                            </button>
                         </div>
                     </div>
+                    
                     <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label class="form-label fw-bold">Nguồn đầu vào</label>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Nguồn đầu vào</label>
                             <select class="form-select" id="linkInputSource">
-                                <option value="">Chọn nguồn đầu vào</option>
+                                <option value="">Chọn nguồn</option>
                                 <option value="account1">Nick Hoàng</option>
                                 <option value="account2">Nick Thoa</option>
                                 <option value="account3">Nick Trọng</option>
@@ -422,34 +479,36 @@
                                 <option value="account5">Nick PTrong</option>
                             </select>
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Mô tả</label>
+                            <input type="text" class="form-control" id="linkDescription" placeholder="Mô tả ngắn gọn...">
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">Mô tả</label>
-                        <textarea class="form-control" id="linkDescription" rows="3" placeholder="Nhập mô tả cho link..."></textarea>
-                    </div>
+                    
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Thời gian bắt đầu</label>
+                            <label class="form-label">Thời gian bắt đầu</label>
                             <input type="time" class="form-control" id="startTime">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Thời gian kết thúc</label>
+                            <label class="form-label">Thời gian kết thúc</label>
                             <input type="time" class="form-control" id="endTime">
                         </div>
                     </div>
+                    
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary btn-lg px-5">
-                            <i class="fas fa-plus"></i> Thêm Link
+                        <button type="submit" class="btn btn-primary px-4">
+                            <i class="fas fa-plus me-2"></i>Thêm Link
                         </button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <!-- Danh sách link theo thư mục -->
+        <!-- Danh sách link -->
         <div class="folder-section fade-in">
             <div class="folder-header">
-                <h5><i class="fas fa-folder-open"></i> Links chưa đánh dấu</h5>
+                <h5><i class="fas fa-folder me-2"></i>Tất cả Links</h5>
                 <div class="folder-count" id="unmarkedCount">0</div>
             </div>
             <div class="folder-content">
@@ -458,8 +517,8 @@
         </div>
 
         <div class="folder-section fade-in">
-            <div class="folder-header" style="background: var(--warning-gradient);">
-                <h5><i class="fas fa-star"></i> Links yêu thích</h5>
+            <div class="folder-header starred">
+                <h5><i class="fas fa-star me-2"></i>Yêu thích</h5>
                 <div class="folder-count" id="markedCount">0</div>
             </div>
             <div class="folder-content">
@@ -470,28 +529,28 @@
 
     <!-- Modal chỉnh sửa -->
     <div class="modal fade" id="editModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-edit"></i> Chỉnh sửa Link</h5>
+                    <h5 class="modal-title"><i class="fas fa-edit me-2"></i>Chỉnh sửa Link</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body p-4">
+                <div class="modal-body">
                     <form id="editLinkForm">
                         <input type="hidden" id="editLinkId">
                         <div class="mb-3">
-                            <label class="form-label fw-bold">URL *</label>
+                            <label class="form-label">URL <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <input type="url" class="form-control" id="editLinkUrl" required>
-                                <button class="btn btn-dark" type="button" id="pasteEditUrlBtn" title="Dán URL">
+                                <button class="btn btn-outline-primary" type="button" id="pasteEditUrlBtn" title="Dán URL">
                                     <i class="fas fa-paste"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Nguồn đầu vào</label>
+                            <label class="form-label">Nguồn đầu vào</label>
                             <select class="form-select" id="editLinkInputSource">
-                                <option value="">Chọn nguồn đầu vào</option>
+                                <option value="">Chọn nguồn</option>
                                 <option value="account1">Nick Hoàng</option>
                                 <option value="account2">Nick Thoa</option>
                                 <option value="account3">Nick Trọng</option>
@@ -500,27 +559,25 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Mô tả</label>
-                            <textarea class="form-control" id="editLinkDescription" rows="3"></textarea>
+                            <label class="form-label">Mô tả</label>
+                            <input type="text" class="form-control" id="editLinkDescription">
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Thời gian bắt đầu</label>
+                                <label class="form-label">Thời gian bắt đầu</label>
                                 <input type="time" class="form-control" id="editStartTime">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Thời gian kết thúc</label>
+                                <label class="form-label">Thời gian kết thúc</label>
                                 <input type="time" class="form-control" id="editEndTime">
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer p-4">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fas fa-times"></i> Hủy
-                    </button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                     <button type="button" class="btn btn-primary" id="saveEditBtn">
-                        <i class="fas fa-save"></i> Lưu thay đổi
+                        <i class="fas fa-save me-2"></i>Lưu
                     </button>
                 </div>
             </div>
@@ -579,13 +636,11 @@
         function setupEventListeners() {
             addLinkForm.addEventListener('submit', handleAddLink);
             document.getElementById('saveEditBtn').addEventListener('click', handleEditSave);
-            
-            // Thêm event listeners cho nút dán
             document.getElementById('pasteUrlBtn').addEventListener('click', handlePasteUrl);
             document.getElementById('pasteEditUrlBtn').addEventListener('click', handlePasteEditUrl);
         }
 
-        // Handle paste URL in add form
+        // Handle paste URL
         async function handlePasteUrl() {
             try {
                 const text = await navigator.clipboard.readText();
@@ -596,12 +651,10 @@
                     showAlert('Clipboard không chứa URL hợp lệ!', 'warning');
                 }
             } catch (error) {
-                console.error('Error pasting URL:', error);
-                showAlert('Không thể dán URL. Vui lòng kiểm tra quyền truy cập clipboard.', 'danger');
+                showAlert('Không thể dán URL từ clipboard!', 'danger');
             }
         }
 
-        // Handle paste URL in edit modal
         async function handlePasteEditUrl() {
             try {
                 const text = await navigator.clipboard.readText();
@@ -612,12 +665,10 @@
                     showAlert('Clipboard không chứa URL hợp lệ!', 'warning');
                 }
             } catch (error) {
-                console.error('Error pasting URL:', error);
-                showAlert('Không thể dán URL. Vui lòng kiểm tra quyền truy cập clipboard.', 'danger');
+                showAlert('Không thể dán URL từ clipboard!', 'danger');
             }
         }
 
-        // Validate URL
         function isValidUrl(string) {
             try {
                 new URL(string);
@@ -643,11 +694,10 @@
                 const querySnapshot = await getDocs(q);
                 
                 if (!querySnapshot.empty) {
-                    showAlert('Link này đã tồn tại! Vui lòng thêm link khác.', 'danger');
+                    showAlert('Link này đã tồn tại!', 'warning');
                     return;
                 }
                 
-                // Add new link
                 const linkData = {
                     url: url,
                     title: extractTitleFromUrl(url),
@@ -671,19 +721,15 @@
             }
         }
 
-        // Load all links
+        // Load links
         async function loadLinks() {
             try {
-                console.log('Loading links from Firestore...');
+                showLoading(unmarkedLinksList);
+                showLoading(markedLinksList);
                 
-                const testQuery = query(collection(db, 'links'));
-                const querySnapshot = await getDocs(testQuery);
-                
-                console.log('Successfully connected to Firestore');
-                console.log('Number of documents:', querySnapshot.size);
+                const querySnapshot = await getDocs(collection(db, 'links'));
                 
                 allLinks = [];
-                
                 querySnapshot.forEach((doc) => {
                     allLinks.push({
                         id: doc.id,
@@ -694,122 +740,120 @@
                 displayLinks();
                 
             } catch (error) {
-                console.error('Detailed error:', error);
-                showAlert(`Lỗi tải dữ liệu: ${error.message}`, 'danger');
-                
-                if (error.code === 'permission-denied') {
-                    showAlert('Lỗi quyền truy cập! Vui lòng kiểm tra Firestore Rules.', 'warning');
-                }
+                console.error('Error loading links:', error);
+                showAlert('Lỗi tải dữ liệu!', 'danger');
             }
+        }
+
+        function showLoading(container) {
+            container.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Đang tải...
+                </div>
+            `;
         }
 
         // Display links
         function displayLinks() {
-            // Sort by newest
             allLinks.sort((a, b) => {
-                return new Date(b.createdAt.seconds * 1000) - new Date(a.createdAt.seconds * 1000);
+                const aTime = a.createdAt?.seconds || 0;
+                const bTime = b.createdAt?.seconds || 0;
+                return bTime - aTime;
             });
             
-            // Separate marked and unmarked links
             const unmarkedLinks = allLinks.filter(link => !link.isMarked);
             const markedLinks = allLinks.filter(link => link.isMarked);
             
-            // Update counts
             document.getElementById('unmarkedCount').textContent = unmarkedLinks.length;
             document.getElementById('markedCount').textContent = markedLinks.length;
             
-            renderLinks(unmarkedLinks, unmarkedLinksList, 'Chưa có link nào chưa được đánh dấu');
-            renderLinks(markedLinks, markedLinksList, 'Chưa có link yêu thích nào');
+            renderLinks(unmarkedLinks, unmarkedLinksList, 'Chưa có link nào');
+            renderLinks(markedLinks, markedLinksList, 'Chưa có link yêu thích');
         }
 
-        // Render links
         function renderLinks(links, container, emptyMessage) {
             if (links.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
                         <i class="fas fa-folder-open"></i>
-                        <h5>${emptyMessage}</h5>
-                        <p>Thêm link mới để bắt đầu quản lý</p>
+                        <h6>${emptyMessage}</h6>
+                        <p class="mb-0">Thêm link mới để bắt đầu</p>
                     </div>
                 `;
                 return;
             }
             
             container.innerHTML = links.map(link => `
-                <div class="link-item fade-in">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <div class="flex-grow-1">
-                            <div class="d-flex align-items-center mb-2">
-                                <a href="#" class="link-title" onclick="window.visitLink('${link.id}', '${link.url}')">${link.title}</a>
-                                ${link.isMarked ? '<i class="fas fa-star text-warning ms-2"></i>' : ''}
-                            </div>
-                            
-                            <div class="link-url">${link.url}</div>
-                            
-                            ${link.description ? `<div class="link-description">${link.description}</div>` : ''}
-                            
-                            ${(link.startTime || link.endTime) ? `
-                                <div class="time-info">
-                                    ${link.startTime ? `<strong>Bắt đầu:</strong> ${link.startTime}` : ''}
-                                    ${link.startTime && link.endTime ? ' - ' : ''}
-                                    ${link.endTime ? `<strong>Kết thúc:</strong> ${link.endTime}` : ''}
-                                </div>
-                            ` : ''}
-                            
-                            <div class="mb-3">
-                                ${link.inputSource ? `<span class="badge badge-input">
-                                    <i class="fas fa-sign-in-alt"></i> ${getAccountName(link.inputSource)}
-                                </span>` : ''}
-                            </div>
-                            
-                            <div class="link-meta">
-                                <div></div>
-                                
-                                <div class="link-actions">
-                                    <button class="btn-action btn-visit" onclick="window.visitLink('${link.id}', '${link.url}')" title="Truy cập">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </button>
-                                    <button class="btn-action btn-edit" onclick="window.editLink('${link.id}')" title="Chỉnh sửa">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn-action btn-star ${link.isMarked ? 'starred' : ''}" onclick="window.toggleMark('${link.id}')" title="${link.isMarked ? 'Bỏ yêu thích' : 'Yêu thích'}">
-                                        <i class="fas fa-star"></i>
-                                    </button>
-                                    <button class="btn-action btn-copy" onclick="window.copyLink('${link.url}')" title="Sao chép">
-                                        <i class="fas fa-copy"></i>
-                                    </button>
-                                    <button class="btn-action btn-delete" onclick="window.deleteLink('${link.id}')" title="Xóa">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
+                <div class="link-item ${link.inputSource ? 'link-item-' + link.inputSource : ''} ${link.isMarked ? 'starred' : ''} fade-in">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <a href="#" class="link-title" onclick="window.visitLink('${link.id}', '${link.url}')">
+                            ${link.title}
+                            ${link.isMarked ? '<i class="fas fa-star text-warning ms-2"></i>' : ''}
+                        </a>
+                    </div>
+                    
+                    <div class="link-url">${link.url}</div>
+                    
+                    ${link.description ? `<div class="link-description">${link.description}</div>` : ''}
+                    
+                    ${(link.startTime || link.endTime) ? `
+                        <div class="time-info">
+                            <i class="fas fa-clock me-1"></i>
+                            ${link.startTime ? `${link.startTime}` : ''}
+                            ${link.startTime && link.endTime ? ' - ' : ''}
+                            ${link.endTime ? `${link.endTime}` : ''}
+                        </div>
+                    ` : ''}
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            ${link.inputSource ? `<span class="badge badge-${link.inputSource}">
+                                ${getAccountName(link.inputSource)}
+                            </span>` : ''}
+                        </div>
+                        
+                        <div class="link-actions">
+                            <button class="btn-action btn-visit" onclick="window.visitLink('${link.id}', '${link.url}')" title="Truy cập">
+                                <i class="fas fa-external-link-alt"></i>
+                            </button>
+                            <button class="btn-action btn-edit" onclick="window.editLink('${link.id}')" title="Chỉnh sửa">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-action btn-star ${link.isMarked ? 'starred' : ''}" onclick="window.toggleMark('${link.id}')" title="${link.isMarked ? 'Bỏ yêu thích' : 'Yêu thích'}">
+                                <i class="fas fa-star"></i>
+                            </button>
+                            <button class="btn-action btn-copy" onclick="window.copyLink('${link.url}')" title="Sao chép">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="btn-action btn-delete" onclick="window.deleteLink('${link.id}')" title="Xóa">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Visit link
+        // Link actions
         function visitLink(linkId, url) {
             window.open(url, '_blank');
         }
 
-        // Edit link
         function editLink(linkId) {
-            const link = allLinks.find(l => l.id === linkId);
-            if (!link) return;
-            
-            document.getElementById('editLinkId').value = linkId;
-            document.getElementById('editLinkUrl').value = link.url;
-            document.getElementById('editLinkInputSource').value = link.inputSource || '';
-            document.getElementById('editLinkDescription').value = link.description || '';
+           const link = allLinks.find(l => l.id === linkId);
+           if (!link) return;
+           
+           document.getElementById('editLinkId').value = linkId;
+           document.getElementById('editLinkUrl').value = link.url;
+           document.getElementById('editLinkInputSource').value = link.inputSource || '';
+           document.getElementById('editLinkDescription').value = link.description || '';
            document.getElementById('editStartTime').value = link.startTime || '';
            document.getElementById('editEndTime').value = link.endTime || '';
            
            editModal.show();
        }
 
-       // Handle edit save
        async function handleEditSave() {
            const linkId = document.getElementById('editLinkId').value;
            const url = document.getElementById('editLinkUrl').value.trim();
@@ -832,16 +876,15 @@
                });
                
                editModal.hide();
-               showAlert('Cập nhật link thành công!', 'success');
+               showAlert('Cập nhật thành công!', 'success');
                loadLinks();
                
            } catch (error) {
                console.error('Error updating link:', error);
-               showAlert('Có lỗi khi cập nhật link!', 'danger');
+               showAlert('Có lỗi khi cập nhật!', 'danger');
            }
        }
 
-       // Toggle mark
        async function toggleMark(linkId) {
            try {
                const linkRef = doc(db, 'links', linkId);
@@ -855,27 +898,25 @@
                
            } catch (error) {
                console.error('Error toggling mark:', error);
-               showAlert('Có lỗi khi cập nhật đánh dấu!', 'danger');
+               showAlert('Có lỗi khi cập nhật!', 'danger');
            }
        }
 
-       // Copy link
-       function copyLink(url) {
-           navigator.clipboard.writeText(url).then(() => {
-               showAlert('Đã sao chép link vào clipboard!', 'info');
-           }).catch(err => {
-               console.error('Error copying link:', err);
+       async function copyLink(url) {
+           try {
+               await navigator.clipboard.writeText(url);
+               showAlert('Đã sao chép link!', 'success');
+           } catch (error) {
                showAlert('Không thể sao chép link!', 'danger');
-           });
+           }
        }
 
-       // Delete link
        async function deleteLink(linkId) {
-           if (!confirm('Bạn có chắc chắn muốn xóa link này không?')) return;
+           if (!confirm('Bạn có chắc muốn xóa link này?')) return;
            
            try {
                await deleteDoc(doc(db, 'links', linkId));
-               showAlert('Đã xóa link thành công!', 'success');
+               showAlert('Đã xóa link!', 'success');
                loadLinks();
                
            } catch (error) {
@@ -884,11 +925,11 @@
            }
        }
 
-       // Get account name
+       // Utility functions
        function getAccountName(account) {
            const accounts = {
                'account1': 'Nick Hoàng',
-               'account2': 'Nick Thoa',
+               'account2': 'Nick Thoa',  
                'account3': 'Nick Trọng',
                'account4': 'Nick Hải',
                'account5': 'Nick PTrong'
@@ -896,7 +937,6 @@
            return accounts[account] || account;
        }
 
-       // Utility functions
        function extractTitleFromUrl(url) {
            try {
                const urlObj = new URL(url);
@@ -904,18 +944,6 @@
            } catch {
                return url;
            }
-       }
-
-       function formatDate(timestamp) {
-           if (!timestamp) return '';
-           const date = timestamp.seconds ? new Date(timestamp.seconds * 1000) : new Date(timestamp);
-           return date.toLocaleDateString('vi-VN', {
-               year: 'numeric',
-               month: 'short',
-               day: 'numeric',
-               hour: '2-digit',
-               minute: '2-digit'
-           });
        }
 
        function showAlert(message, type) {
@@ -929,8 +957,8 @@
                top: 20px;
                right: 20px;
                z-index: 9999;
-               min-width: 300px;
-               box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+               min-width: 280px;
+               box-shadow: var(--shadow-lg);
            `;
            
            let icon = '';
@@ -952,47 +980,204 @@
            
            document.body.appendChild(alertDiv);
            
-           // Auto remove after 5 seconds
+           // Auto remove after 4 seconds
            setTimeout(() => {
                if (alertDiv.parentNode) {
                    alertDiv.classList.remove('show');
                    setTimeout(() => alertDiv.remove(), 150);
                }
-           }, 5000);
+           }, 4000);
        }
 
-       // Make functions global for onclick handlers
+       // Make functions global
        window.visitLink = visitLink;
        window.editLink = editLink;
        window.toggleMark = toggleMark;
        window.copyLink = copyLink;
        window.deleteLink = deleteLink;
 
-       // Add scroll animations
-       const observerOptions = {
-           threshold: 0.1,
-           rootMargin: '0px 0px -50px 0px'
-       };
+       // Smooth scroll for better UX
+       document.documentElement.style.scrollBehavior = 'smooth';
 
-       const observer = new IntersectionObserver((entries) => {
-           entries.forEach(entry => {
-               if (entry.isIntersecting) {
-                   entry.target.style.opacity = '1';
-                   entry.target.style.transform = 'translateY(0)';
+       // Add loading states for better feedback
+       function setButtonLoading(button, loading = true) {
+           if (loading) {
+               button.disabled = true;
+               const originalText = button.innerHTML;
+               button.dataset.originalText = originalText;
+               button.innerHTML = '<div class="spinner me-2"></div>Đang xử lý...';
+           } else {
+               button.disabled = false;
+               button.innerHTML = button.dataset.originalText;
+           }
+       }
+
+       // Enhanced form validation
+       function validateForm(form) {
+           const inputs = form.querySelectorAll('input[required]');
+           let isValid = true;
+           
+           inputs.forEach(input => {
+               if (!input.value.trim()) {
+                   input.classList.add('is-invalid');
+                   isValid = false;
+               } else {
+                   input.classList.remove('is-invalid');
                }
            });
-       }, observerOptions);
+           
+           return isValid;
+       }
 
-       // Observe elements for animation
-       document.addEventListener('DOMContentLoaded', () => {
-           const elementsToAnimate = document.querySelectorAll('.fade-in');
-           elementsToAnimate.forEach(el => {
-               el.style.opacity = '0';
-               el.style.transform = 'translateY(20px)';
-               el.style.transition = 'all 0.6s ease';
-               observer.observe(el);
+       // Auto-save draft (optional enhancement)
+       let draftTimer;
+       function saveDraft() {
+           const formData = {
+               url: document.getElementById('linkUrl').value,
+               inputSource: document.getElementById('linkInputSource').value,
+               description: document.getElementById('linkDescription').value,
+               startTime: document.getElementById('startTime').value,
+               endTime: document.getElementById('endTime').value
+           };
+           
+           if (formData.url.trim()) {
+               localStorage.setItem('linkDraft', JSON.stringify(formData));
+           }
+       }
+
+       function loadDraft() {
+           const draft = localStorage.getItem('linkDraft');
+           if (draft) {
+               const data = JSON.parse(draft);
+               document.getElementById('linkUrl').value = data.url || '';
+               document.getElementById('linkInputSource').value = data.inputSource || '';
+               document.getElementById('linkDescription').value = data.description || '';
+               document.getElementById('startTime').value = data.startTime || '';
+               document.getElementById('endTime').value = data.endTime || '';
+           }
+       }
+
+       function clearDraft() {
+           localStorage.removeItem('linkDraft');
+       }
+
+       // Set up auto-save
+       ['linkUrl', 'linkInputSource', 'linkDescription', 'startTime', 'endTime'].forEach(id => {
+           const element = document.getElementById(id);
+           element.addEventListener('input', () => {
+               clearTimeout(draftTimer);
+               draftTimer = setTimeout(saveDraft, 1000);
            });
        });
+
+       // Load draft on page load
+       document.addEventListener('DOMContentLoaded', loadDraft);
+
+       // Clear draft on successful form submission
+       addLinkForm.addEventListener('submit', () => {
+           setTimeout(clearDraft, 1000);
+       });
+
+       // Keyboard shortcuts
+       document.addEventListener('keydown', (e) => {
+           // Ctrl/Cmd + Enter to submit form
+           if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+               const activeElement = document.activeElement;
+               if (activeElement && activeElement.form === addLinkForm) {
+                   e.preventDefault();
+                   addLinkForm.dispatchEvent(new Event('submit'));
+               }
+           }
+           
+           // Escape to close modal
+           if (e.key === 'Escape' && editModal._isShown) {
+               editModal.hide();
+           }
+       });
+
+       // Focus management
+       document.getElementById('editModal').addEventListener('shown.bs.modal', () => {
+           document.getElementById('editLinkUrl').focus();
+       });
+
+       // Enhanced error handling with retry
+       let retryCount = 0;
+       const maxRetries = 3;
+
+       async function retryOperation(operation, context = '') {
+           try {
+               retryCount = 0;
+               return await operation();
+           } catch (error) {
+               if (retryCount < maxRetries && error.code !== 'permission-denied') {
+                   retryCount++;
+                   showAlert(`Thử lại lần ${retryCount}/${maxRetries}...`, 'info');
+                   setTimeout(() => retryOperation(operation, context), 1000 * retryCount);
+               } else {
+                   console.error(`Error in ${context}:`, error);
+                   showAlert(`Lỗi: ${error.message}`, 'danger');
+               }
+           }
+       }
+
+       // Performance optimization: debounce search
+       function debounce(func, wait) {
+           let timeout;
+           return function executedFunction(...args) {
+               const later = () => {
+                   clearTimeout(timeout);
+                   func(...args);
+               };
+               clearTimeout(timeout);
+               timeout = setTimeout(later, wait);
+           };
+       }
+
+       // Add search functionality (optional)
+       function addSearchFeature() {
+           const searchInput = document.createElement('input');
+           searchInput.type = 'text';
+           searchInput.className = 'form-control mb-3';
+           searchInput.placeholder = 'Tìm kiếm links...';
+           searchInput.id = 'searchInput';
+           
+           const firstFolderContent = document.querySelector('.folder-content');
+           firstFolderContent.insertBefore(searchInput, firstFolderContent.firstChild);
+           
+           const debouncedSearch = debounce((query) => {
+               filterLinks(query);
+           }, 300);
+           
+           searchInput.addEventListener('input', (e) => {
+               debouncedSearch(e.target.value);
+           });
+       }
+
+       function filterLinks(query) {
+           if (!query.trim()) {
+               displayLinks();
+               return;
+           }
+           
+           const filtered = allLinks.filter(link => 
+               link.title.toLowerCase().includes(query.toLowerCase()) ||
+               link.url.toLowerCase().includes(query.toLowerCase()) ||
+               (link.description && link.description.toLowerCase().includes(query.toLowerCase()))
+           );
+           
+           const unmarkedFiltered = filtered.filter(link => !link.isMarked);
+           const markedFiltered = filtered.filter(link => link.isMarked);
+           
+           document.getElementById('unmarkedCount').textContent = unmarkedFiltered.length;
+           document.getElementById('markedCount').textContent = markedFiltered.length;
+           
+           renderLinks(unmarkedFiltered, unmarkedLinksList, 'Không tìm thấy link nào');
+           renderLinks(markedFiltered, markedLinksList, 'Không tìm thấy link yêu thích nào');
+       }
+
+       // Initialize search feature
+       setTimeout(addSearchFeature, 1000);
+
    </script>
 </body>
 </html>
