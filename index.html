@@ -124,56 +124,6 @@
             transform: translateY(-2px);
         }
 
-        .stats-card {
-            background: var(--primary-gradient);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .stats-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .stats-card h3 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .stats-card p {
-            margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .search-container {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .search-input {
-            padding-left: 3rem;
-            border-radius: 25px;
-            border: 2px solid #e9ecef;
-            height: 60px;
-            font-size: 1.1rem;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6c757d;
-            font-size: 1.2rem;
-        }
-
         .link-item {
             background: white;
             border-radius: 20px;
@@ -227,6 +177,19 @@
             line-height: 1.5;
         }
 
+        .time-info {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #495057;
+        }
+
+        .time-info strong {
+            color: #2c3e50;
+        }
+
         .badge {
             border-radius: 20px;
             padding: 0.5rem 1rem;
@@ -241,11 +204,6 @@
             color: white;
         }
 
-        .badge-output {
-            background: var(--warning-gradient);
-            color: white;
-        }
-
         .link-meta {
             display: flex;
             justify-content: space-between;
@@ -253,13 +211,6 @@
             margin-top: 1rem;
             padding-top: 1rem;
             border-top: 1px solid #ecf0f1;
-        }
-
-        .link-stats {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.85rem;
-            color: #7f8c8d;
         }
 
         .link-actions {
@@ -417,10 +368,6 @@
                 justify-content: center;
                 width: 100%;
             }
-            
-            .stats-card h3 {
-                font-size: 2rem;
-            }
         }
 
         .fade-in {
@@ -464,21 +411,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-12 mb-3">
                             <label class="form-label fw-bold">Nguồn đầu vào</label>
                             <select class="form-select" id="linkInputSource">
                                 <option value="">Chọn nguồn đầu vào</option>
-                                <option value="account1">Nick Hoàng</option>
-                                <option value="account2">Nick Thoa</option>
-                                <option value="account3">Nick Trọng</option>
-                                <option value="account4">Nick Hải</option>
-                                <option value="account5">Nick PTrong</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Nguồn đầu ra</label>
-                            <select class="form-select" id="linkOutputSource">
-                                <option value="">Chọn nguồn đầu ra</option>
                                 <option value="account1">Nick Hoàng</option>
                                 <option value="account2">Nick Thoa</option>
                                 <option value="account3">Nick Trọng</option>
@@ -491,48 +427,22 @@
                         <label class="form-label fw-bold">Mô tả</label>
                         <textarea class="form-control" id="linkDescription" rows="3" placeholder="Nhập mô tả cho link..."></textarea>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Thời gian bắt đầu</label>
+                            <input type="time" class="form-control" id="startTime">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Thời gian kết thúc</label>
+                            <input type="time" class="form-control" id="endTime">
+                        </div>
+                    </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary btn-lg px-5">
                             <i class="fas fa-plus"></i> Thêm Link
                         </button>
                     </div>
                 </form>
-            </div>
-        </div>
-
-        <!-- Tìm kiếm -->
-        <div class="search-container fade-in">
-            <div class="position-relative">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="form-control search-input" id="searchInput" placeholder="Tìm kiếm link, mô tả, hoặc nguồn...">
-            </div>
-        </div>
-
-        <!-- Thống kê -->
-        <div class="row mb-4 fade-in">
-            <div class="col-md-3 col-sm-6">
-                <div class="stats-card">
-                    <h3 id="totalLinks">0</h3>
-                    <p><i class="fas fa-link"></i> Tổng số link</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="stats-card" style="background: var(--success-gradient);">
-                    <h3 id="totalClicks">0</h3>
-                    <p><i class="fas fa-mouse-pointer"></i> Tổng lượt click</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="stats-card" style="background: var(--warning-gradient);">
-                    <h3 id="favoriteLinks">0</h3>
-                    <p><i class="fas fa-star"></i> Link yêu thích</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="stats-card" style="background: var(--secondary-gradient);">
-                    <h3 id="todayAdded">0</h3>
-                    <p><i class="fas fa-calendar-plus"></i> Thêm hôm nay</p>
-                </div>
             </div>
         </div>
 
@@ -578,33 +488,30 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Nguồn đầu vào</label>
-                                <select class="form-select" id="editLinkInputSource">
-                                    <option value="">Chọn nguồn đầu vào</option>
-                                    <option value="account1">Nick Hoàng</option>
-                                    <option value="account2">Nick Thoa</option>
-                                    <option value="account3">Nick Trọng</option>
-                                    <option value="account4">Nick Hải</option>
-                                    <option value="account5">Nick PTrong</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Nguồn đầu ra</label>
-                                <select class="form-select" id="editLinkOutputSource">
-                                    <option value="">Chọn nguồn đầu ra</option>
-                                    <option value="account1">Nick Hoàng</option>
-                                    <option value="account2">Nick Thoa</option>
-                                    <option value="account3">Nick Trọng</option>
-                                    <option value="account4">Nick Hải</option>
-                                    <option value="account5">Nick PTrong</option>
-                                </select>
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nguồn đầu vào</label>
+                            <select class="form-select" id="editLinkInputSource">
+                                <option value="">Chọn nguồn đầu vào</option>
+                                <option value="account1">Nick Hoàng</option>
+                                <option value="account2">Nick Thoa</option>
+                                <option value="account3">Nick Trọng</option>
+                                <option value="account4">Nick Hải</option>
+                                <option value="account5">Nick PTrong</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Mô tả</label>
                             <textarea class="form-control" id="editLinkDescription" rows="3"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Thời gian bắt đầu</label>
+                                <input type="time" class="form-control" id="editStartTime">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Thời gian kết thúc</label>
+                                <input type="time" class="form-control" id="editEndTime">
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -660,20 +567,17 @@
         const addLinkForm = document.getElementById('addLinkForm');
         const unmarkedLinksList = document.getElementById('unmarkedLinksList');
         const markedLinksList = document.getElementById('markedLinksList');
-        const searchInput = document.getElementById('searchInput');
 
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
             editModal = new bootstrap.Modal(document.getElementById('editModal'));
             loadLinks();
             setupEventListeners();
-            updateStats();
         });
 
         // Setup event listeners
         function setupEventListeners() {
             addLinkForm.addEventListener('submit', handleAddLink);
-            searchInput.addEventListener('input', filterAndDisplayLinks);
             document.getElementById('saveEditBtn').addEventListener('click', handleEditSave);
             
             // Thêm event listeners cho nút dán
@@ -729,8 +633,9 @@
             
             const url = document.getElementById('linkUrl').value.trim();
             const inputSource = document.getElementById('linkInputSource').value;
-            const outputSource = document.getElementById('linkOutputSource').value;
             const description = document.getElementById('linkDescription').value.trim();
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
             
             try {
                 // Check if URL already exists
@@ -747,12 +652,11 @@
                     url: url,
                     title: extractTitleFromUrl(url),
                     inputSource: inputSource,
-                    outputSource: outputSource,
                     description: description,
+                    startTime: startTime,
+                    endTime: endTime,
                     createdAt: new Date(),
-                    clickCount: 0,
-                    isMarked: false,
-                    lastClicked: null
+                    isMarked: false
                 };
                 
                 await addDoc(collection(db, 'links'), linkData);
@@ -760,7 +664,6 @@
                 showAlert('Thêm link thành công!', 'success');
                 addLinkForm.reset();
                 loadLinks();
-                updateStats();
                 
             } catch (error) {
                 console.error('Error adding link:', error);
@@ -788,8 +691,7 @@
                     });
                 });
                 
-                filterAndDisplayLinks();
-                updateStats();
+                displayLinks();
                 
             } catch (error) {
                 console.error('Detailed error:', error);
@@ -801,41 +703,27 @@
             }
         }
 
-        // Filter and display links
-        function filterAndDisplayLinks() {
-            let filteredLinks = [...allLinks];
-            
-            // Search filter
-            const searchTerm = searchInput.value.toLowerCase();
-            if (searchTerm) {
-                filteredLinks = filteredLinks.filter(link => 
-                    link.title.toLowerCase().includes(searchTerm) ||
-                    link.url.toLowerCase().includes(searchTerm) ||
-                    link.description.toLowerCase().includes(searchTerm) ||
-                    (link.inputSource && getAccountName(link.inputSource).toLowerCase().includes(searchTerm)) ||
-                    (link.outputSource && getAccountName(link.outputSource).toLowerCase().includes(searchTerm))
-                );
-            }
-            
+        // Display links
+        function displayLinks() {
             // Sort by newest
-            filteredLinks.sort((a, b) => {
+            allLinks.sort((a, b) => {
                 return new Date(b.createdAt.seconds * 1000) - new Date(a.createdAt.seconds * 1000);
             });
             
             // Separate marked and unmarked links
-            const unmarkedLinks = filteredLinks.filter(link => !link.isMarked);
-            const markedLinks = filteredLinks.filter(link => link.isMarked);
+            const unmarkedLinks = allLinks.filter(link => !link.isMarked);
+            const markedLinks = allLinks.filter(link => link.isMarked);
             
             // Update counts
             document.getElementById('unmarkedCount').textContent = unmarkedLinks.length;
             document.getElementById('markedCount').textContent = markedLinks.length;
             
-            displayLinks(unmarkedLinks, unmarkedLinksList, 'Chưa có link nào chưa được đánh dấu');
-            displayLinks(markedLinks, markedLinksList, 'Chưa có link yêu thích nào');
+            renderLinks(unmarkedLinks, unmarkedLinksList, 'Chưa có link nào chưa được đánh dấu');
+            renderLinks(markedLinks, markedLinksList, 'Chưa có link yêu thích nào');
         }
 
-        // Display links
-        function displayLinks(links, container, emptyMessage) {
+        // Render links
+        function renderLinks(links, container, emptyMessage) {
             if (links.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
@@ -860,21 +748,22 @@
                             
                             ${link.description ? `<div class="link-description">${link.description}</div>` : ''}
                             
+                            ${(link.startTime || link.endTime) ? `
+                                <div class="time-info">
+                                    ${link.startTime ? `<strong>Bắt đầu:</strong> ${link.startTime}` : ''}
+                                    ${link.startTime && link.endTime ? ' - ' : ''}
+                                    ${link.endTime ? `<strong>Kết thúc:</strong> ${link.endTime}` : ''}
+                                </div>
+                            ` : ''}
+                            
                             <div class="mb-3">
                                 ${link.inputSource ? `<span class="badge badge-input">
                                     <i class="fas fa-sign-in-alt"></i> ${getAccountName(link.inputSource)}
                                 </span>` : ''}
-                                ${link.outputSource ? `<span class="badge badge-output">
-                                    <i class="fas fa-sign-out-alt"></i> ${getAccountName(link.outputSource)}
-                                </span>` : ''}
                             </div>
                             
                             <div class="link-meta">
-                                <div class="link-stats">
-                                    <span><i class="fas fa-calendar"></i> ${formatDate(link.createdAt)}</span>
-                                    <span><i class="fas fa-mouse-pointer"></i> ${link.clickCount || 0} clicks</span>
-                                    ${link.lastClicked ? `<span><i class="fas fa-clock"></i> ${formatDate(link.lastClicked)}</span>` : ''}
-                                </div>
+                                <div></div>
                                 
                                 <div class="link-actions">
                                     <button class="btn-action btn-visit" onclick="window.visitLink('${link.id}', '${link.url}')" title="Truy cập">
@@ -900,27 +789,9 @@
             `).join('');
         }
 
-        // Visit link and update click count
-        async function visitLink(linkId, url) {
-            try {
-                const linkRef = doc(db, 'links', linkId);
-                const link = allLinks.find(l => l.id === linkId);
-                
-                await updateDoc(linkRef, {
-                    clickCount: (link.clickCount || 0) + 1,
-                    lastClicked: new Date()
-                });
-                
-                // Open link in new tab
-                window.open(url, '_blank');
-                
-                loadLinks();
-                
-            } catch (error) {
-                console.error('Error updating click count:', error);
-                // Still open the link even if update fails
-                window.open(url, '_blank');
-            }
+        // Visit link
+        function visitLink(linkId, url) {
+            window.open(url, '_blank');
         }
 
         // Edit link
@@ -931,237 +802,197 @@
             document.getElementById('editLinkId').value = linkId;
             document.getElementById('editLinkUrl').value = link.url;
             document.getElementById('editLinkInputSource').value = link.inputSource || '';
-            document.getElementById('editLinkOutputSource').value = link.outputSource || '';
             document.getElementById('editLinkDescription').value = link.description || '';
-            
-            editModal.show();
-        }
+           document.getElementById('editStartTime').value = link.startTime || '';
+           document.getElementById('editEndTime').value = link.endTime || '';
+           
+           editModal.show();
+       }
 
-        // Handle edit save
-        async function handleEditSave() {
-            const linkId = document.getElementById('editLinkId').value;
-            const url = document.getElementById('editLinkUrl').value.trim();
-            const inputSource = document.getElementById('editLinkInputSource').value;
-            const outputSource = document.getElementById('editLinkOutputSource').value;
-            const description = document.getElementById('editLinkDescription').value.trim();
-            
-            try {
-                const linkRef = doc(db, 'links', linkId);
-                
-                await updateDoc(linkRef, {
-                    url: url,
-                    title: extractTitleFromUrl(url),
-                    inputSource: inputSource,
-                    outputSource: outputSource,
-                    description: description,
-                    updatedAt: new Date()
-                });
-                
-                editModal.hide();
-                showAlert('Cập nhật link thành công!', 'success');
-                loadLinks();
-                
-            } catch (error) {
-                console.error('Error updating link:', error);
-                showAlert('Có lỗi khi cập nhật link!', 'danger');
-            }
-        }
+       // Handle edit save
+       async function handleEditSave() {
+           const linkId = document.getElementById('editLinkId').value;
+           const url = document.getElementById('editLinkUrl').value.trim();
+           const inputSource = document.getElementById('editLinkInputSource').value;
+           const description = document.getElementById('editLinkDescription').value.trim();
+           const startTime = document.getElementById('editStartTime').value;
+           const endTime = document.getElementById('editEndTime').value;
+           
+           try {
+               const linkRef = doc(db, 'links', linkId);
+               
+               await updateDoc(linkRef, {
+                   url: url,
+                   title: extractTitleFromUrl(url),
+                   inputSource: inputSource,
+                   description: description,
+                   startTime: startTime,
+                   endTime: endTime,
+                   updatedAt: new Date()
+               });
+               
+               editModal.hide();
+               showAlert('Cập nhật link thành công!', 'success');
+               loadLinks();
+               
+           } catch (error) {
+               console.error('Error updating link:', error);
+               showAlert('Có lỗi khi cập nhật link!', 'danger');
+           }
+       }
 
-        // Toggle mark
-        async function toggleMark(linkId) {
-            try {
-                const linkRef = doc(db, 'links', linkId);
-                const link = allLinks.find(l => l.id === linkId);
-                
-                await updateDoc(linkRef, {
-                    isMarked: !link.isMarked
-                });
-                
-                loadLinks();
-                
-            } catch (error) {
-                console.error('Error toggling mark:', error);
-                showAlert('Có lỗi khi cập nhật đánh dấu!', 'danger');
-            }
-        }
+       // Toggle mark
+       async function toggleMark(linkId) {
+           try {
+               const linkRef = doc(db, 'links', linkId);
+               const link = allLinks.find(l => l.id === linkId);
+               
+               await updateDoc(linkRef, {
+                   isMarked: !link.isMarked
+               });
+               
+               loadLinks();
+               
+           } catch (error) {
+               console.error('Error toggling mark:', error);
+               showAlert('Có lỗi khi cập nhật đánh dấu!', 'danger');
+           }
+       }
 
-        // Copy link
-        function copyLink(url) {
-            navigator.clipboard.writeText(url).then(() => {
-                showAlert('Đã sao chép link vào clipboard!', 'info');
-            }).catch(err => {
-                console.error('Error copying link:', err);
-                showAlert('Không thể sao chép link!', 'danger');
-            });
-        }
+       // Copy link
+       function copyLink(url) {
+           navigator.clipboard.writeText(url).then(() => {
+               showAlert('Đã sao chép link vào clipboard!', 'info');
+           }).catch(err => {
+               console.error('Error copying link:', err);
+               showAlert('Không thể sao chép link!', 'danger');
+           });
+       }
 
-        // Delete link
-        async function deleteLink(linkId) {
-            if (!confirm('Bạn có chắc chắn muốn xóa link này không?')) return;
-            
-            try {
-                await deleteDoc(doc(db, 'links', linkId));
-                showAlert('Đã xóa link thành công!', 'success');
-                loadLinks();
-                updateStats();
-                
-            } catch (error) {
-                console.error('Error deleting link:', error);
-                showAlert('Có lỗi khi xóa link!', 'danger');
-            }
-        }
+       // Delete link
+       async function deleteLink(linkId) {
+           if (!confirm('Bạn có chắc chắn muốn xóa link này không?')) return;
+           
+           try {
+               await deleteDoc(doc(db, 'links', linkId));
+               showAlert('Đã xóa link thành công!', 'success');
+               loadLinks();
+               
+           } catch (error) {
+               console.error('Error deleting link:', error);
+               showAlert('Có lỗi khi xóa link!', 'danger');
+           }
+       }
 
-        // Update statistics
-        function updateStats() {
-            const totalLinks = allLinks.length;
-            const totalClicks = allLinks.reduce((sum, link) => sum + (link.clickCount || 0), 0);
-            const markedLinks = allLinks.filter(link => link.isMarked).length;
-            
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            const todayAdded = allLinks.filter(link => {
-                const linkDate = new Date(link.createdAt.seconds * 1000);
-                linkDate.setHours(0, 0, 0, 0);
-                return linkDate.getTime() === today.getTime();
-            }).length;
-            
-            // Animate counters
-            animateCounter('totalLinks', totalLinks);
-            animateCounter('totalClicks', totalClicks);
-            animateCounter('favoriteLinks', markedLinks);
-            animateCounter('todayAdded', todayAdded);
-        }
+       // Get account name
+       function getAccountName(account) {
+           const accounts = {
+               'account1': 'Nick Hoàng',
+               'account2': 'Nick Thoa',
+               'account3': 'Nick Trọng',
+               'account4': 'Nick Hải',
+               'account5': 'Nick PTrong'
+           };
+           return accounts[account] || account;
+       }
 
-        // Animate counter
-        function animateCounter(elementId, targetValue) {
-            const element = document.getElementById(elementId);
-            const currentValue = parseInt(element.textContent) || 0;
-            const increment = Math.ceil(Math.abs(targetValue - currentValue) / 20);
-            
-            if (currentValue < targetValue) {
-                const newValue = Math.min(currentValue + increment, targetValue);
-                element.textContent = newValue;
-                if (newValue < targetValue) {
-                    setTimeout(() => animateCounter(elementId, targetValue), 50);
-                }
-            } else if (currentValue > targetValue) {
-                const newValue = Math.max(currentValue - increment, targetValue);
-                element.textContent = newValue;
-                if (newValue > targetValue) {
-                    setTimeout(() => animateCounter(elementId, targetValue), 50);
-                }
-            }
-        }
+       // Utility functions
+       function extractTitleFromUrl(url) {
+           try {
+               const urlObj = new URL(url);
+               return urlObj.hostname.replace('www.', '');
+           } catch {
+               return url;
+           }
+       }
 
-        // Get account name
-        function getAccountName(account) {
-            const accounts = {
-                'account1': 'Nick Hoàng',
-                'account2': 'Nick Thoa',
-                'account3': 'Nick Trọng',
-                'account4': 'Nick Hải',
-                'account5': 'Nick PTrong'
-            };
-            return accounts[account] || account;
-        }
+       function formatDate(timestamp) {
+           if (!timestamp) return '';
+           const date = timestamp.seconds ? new Date(timestamp.seconds * 1000) : new Date(timestamp);
+           return date.toLocaleDateString('vi-VN', {
+               year: 'numeric',
+               month: 'short',
+               day: 'numeric',
+               hour: '2-digit',
+               minute: '2-digit'
+           });
+       }
 
-        // Utility functions
-        function extractTitleFromUrl(url) {
-            try {
-                const urlObj = new URL(url);
-                return urlObj.hostname.replace('www.', '');
-            } catch {
-                return url;
-            }
-        }
+       function showAlert(message, type) {
+           // Remove existing alerts
+           const existingAlerts = document.querySelectorAll('.alert');
+           existingAlerts.forEach(alert => alert.remove());
+           
+           const alertDiv = document.createElement('div');
+           alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+           alertDiv.style.cssText = `
+               top: 20px;
+               right: 20px;
+               z-index: 9999;
+               min-width: 300px;
+               box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+           `;
+           
+           let icon = '';
+           switch(type) {
+               case 'success': icon = 'fas fa-check-circle'; break;
+               case 'danger': icon = 'fas fa-exclamation-circle'; break;
+               case 'warning': icon = 'fas fa-exclamation-triangle'; break;
+               case 'info': icon = 'fas fa-info-circle'; break;
+               default: icon = 'fas fa-bell';
+           }
+           
+           alertDiv.innerHTML = `
+               <div class="d-flex align-items-center">
+                   <i class="${icon} me-2"></i>
+                   <span>${message}</span>
+               </div>
+               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+           `;
+           
+           document.body.appendChild(alertDiv);
+           
+           // Auto remove after 5 seconds
+           setTimeout(() => {
+               if (alertDiv.parentNode) {
+                   alertDiv.classList.remove('show');
+                   setTimeout(() => alertDiv.remove(), 150);
+               }
+           }, 5000);
+       }
 
-        function formatDate(timestamp) {
-            if (!timestamp) return '';
-            const date = timestamp.seconds ? new Date(timestamp.seconds * 1000) : new Date(timestamp);
-            return date.toLocaleDateString('vi-VN', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-        }
+       // Make functions global for onclick handlers
+       window.visitLink = visitLink;
+       window.editLink = editLink;
+       window.toggleMark = toggleMark;
+       window.copyLink = copyLink;
+       window.deleteLink = deleteLink;
 
-        function showAlert(message, type) {
-            // Remove existing alerts
-            const existingAlerts = document.querySelectorAll('.alert');
-            existingAlerts.forEach(alert => alert.remove());
-            
-            const alertDiv = document.createElement('div');
-            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
-            alertDiv.style.cssText = `
-                top: 20px;
-                right: 20px;
-                z-index: 9999;
-                min-width: 300px;
-                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            `;
-            
-            let icon = '';
-            switch(type) {
-                case 'success': icon = 'fas fa-check-circle'; break;
-                case 'danger': icon = 'fas fa-exclamation-circle'; break;
-                case 'warning': icon = 'fas fa-exclamation-triangle'; break;
-                case 'info': icon = 'fas fa-info-circle'; break;
-                default: icon = 'fas fa-bell';
-            }
-            
-            alertDiv.innerHTML = `
-                <div class="d-flex align-items-center">
-                    <i class="${icon} me-2"></i>
-                    <span>${message}</span>
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            `;
-            
-            document.body.appendChild(alertDiv);
-            
-            // Auto remove after 5 seconds
-            setTimeout(() => {
-                if (alertDiv.parentNode) {
-                    alertDiv.classList.remove('show');
-                    setTimeout(() => alertDiv.remove(), 150);
-                }
-            }, 5000);
-        }
+       // Add scroll animations
+       const observerOptions = {
+           threshold: 0.1,
+           rootMargin: '0px 0px -50px 0px'
+       };
 
-        // Make functions global for onclick handlers
-        window.visitLink = visitLink;
-        window.editLink = editLink;
-        window.toggleMark = toggleMark;
-        window.copyLink = copyLink;
-        window.deleteLink = deleteLink;
+       const observer = new IntersectionObserver((entries) => {
+           entries.forEach(entry => {
+               if (entry.isIntersecting) {
+                   entry.target.style.opacity = '1';
+                   entry.target.style.transform = 'translateY(0)';
+               }
+           });
+       }, observerOptions);
 
-        // Add scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const elementsToAnimate = document.querySelectorAll('.fade-in');
-            elementsToAnimate.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'all 0.6s ease';
-                observer.observe(el);
-            });
-        });
-    </script>
+       // Observe elements for animation
+       document.addEventListener('DOMContentLoaded', () => {
+           const elementsToAnimate = document.querySelectorAll('.fade-in');
+           elementsToAnimate.forEach(el => {
+               el.style.opacity = '0';
+               el.style.transform = 'translateY(20px)';
+               el.style.transition = 'all 0.6s ease';
+               observer.observe(el);
+           });
+       });
+   </script>
 </body>
 </html>
