@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Manager Pro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --warning-gradient: linear-gradient(135deg, #fdbb2d 0%, #22c1c3 100%);
+            --dark-gradient: linear-gradient(135deg, #434343 0%, #000000 100%);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --hover-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .main-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .main-header h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
+        }
+
+        .card:hover {
+            box-shadow: var(--hover-shadow);
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 20px 20px 0 0 !important;
+            padding: 1.5rem;
+            border: none;
+        }
+
+        .card-header h5 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            border-radius: 25px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-success {
+            background: var(--success-gradient);
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        .btn-warning {
+            background: var(--warning-gradient);
+            box-shadow: 0 4px 15px rgba(253, 187, 45, 0.4);
+        }
+
+        .btn-danger {
+            background: var(--secondary-gradient);
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .btn-dark {
+            background: var(--dark-gradient);
+            box-shadow: 0 4px 15px rgba(67, 67, 67, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .stats-card {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .stats-card h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .stats-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            padding-left: 3rem;
+            border-radius: 25px;
+            border: 2px solid #e9ecef;
+            height: 60px;
+            font-size: 1.1rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            font-size: 1.2rem;
+        }
+
+        .link-item {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .link-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .link-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .link-title:hover {
+            color: #667eea;
+        }
+
+        .link-url {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            word-break: break-all;
+            margin-bottom: 1rem;
+        }
+
+        .link-description {
+            color: #34495e;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .badge {
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-input {
+            background: var(--success-gradient);
+            color: white;
+        }
+
+        .badge-output {
+            background: var(--warning-gradient);
+            color: white;
+        }
+
+        .link-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .link-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+
+        .link-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.1) translateY(-2px);
+        }
+
+        .btn-visit {
+            background: var(--success-gradient);
+            color: white;
+        }
+
+        .btn-edit {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .btn-star {
+            background: var(--warning-gradient);
+            color: white;
+        }
+
+        .btn-star.starred {
+            background: #ffc107;
+            color: #212529;
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+        }
+
+        .btn-copy {
+            background: var(--dark-gradient);
+            color: white;
+        }
+
+        .btn-delete {
+            background: var(--secondary-gradient);
+            color: white;
+        }
+
+        .folder-section {
+            margin-bottom: 3rem;
+        }
+
+        .folder-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 20px 20px 0 0;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .folder-header h5 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        .folder-count {
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .folder-content {
+            background: rgba(255,255,255,0.95);
+            border-radius: 0 0 20px 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #7f8c8d;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .input-group .btn {
+            border-radius: 0 15px 15px 0;
+        }
+
+        .input-group .form-control {
+            border-radius: 15px 0 0 15px;
+        }
+
+        .modal-content {
+            border-radius: 20px;
+            border: none;
+            box-shadow: var(--hover-shadow);
+        }
+
+        .modal-header {
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 20px 20px 0 0;
+            padding: 2rem;
+        }
+
+        .modal-title {
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .alert {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 2rem;
+            }
+            
+            .link-item {
+                padding: 1.5rem;
+            }
+            
+            .link-meta {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .link-actions {
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .stats-card h3 {
+                font-size: 2rem;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="text-center">
+                <h1><i class="fas fa-link"></i> Link Manager Pro</h1>
+                <p class="mb-0">Quản lý và tổ chức links một cách thông minh</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Form thêm link -->
+        <div class="card mb-4 fade-in">
+            <div class="card-header">
+                <h5><i class="fas fa-plus-circle"></i> Thêm Link Mới</h5>
+            </div>
+            <div class="card-body">
+                <form id="addLinkForm">
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label fw-bold">URL *</label>
+                            <div class="input-group">
+                                <input type="url" class="form-control" id="linkUrl" required placeholder="https://example.com">
+                                <button class="btn btn-dark" type="button" id="pasteUrlBtn" title="Dán URL">
+                                    <i class="fas fa-paste"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Nguồn đầu vào</label>
+                            <select class="form-select" id="linkInputSource">
+                                <option value="">Chọn nguồn đầu vào</option>
+                                <option value="account1">Nick Hoàng</option>
+                                <option value="account2">Nick Thoa</option>
+                                <option value="account3">Nick Trọng</option>
+                                <option value="account4">Nick Hải</option>
+                                <option value="account5">Nick PTrong</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Nguồn đầu ra</label>
+                            <select class="form-select" id="linkOutputSource">
+                                <option value="">Chọn nguồn đầu ra</option>
+                                <option value="account1">Nick Hoàng</option>
+                                <option value="account2">Nick Thoa</option>
+                                <option value="account3">Nick Trọng</option>
+                                <option value="account4">Nick Hải</option>
+                                <option value="account5">Nick PTrong</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Mô tả</label>
+                        <textarea class="form-control" id="linkDescription" rows="3" placeholder="Nhập mô tả cho link..."></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg px-5">
+                            <i class="fas fa-plus"></i> Thêm Link
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tìm kiếm -->
+        <div class="search-container fade-in">
+            <div class="position-relative">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="form-control search-input" id="searchInput" placeholder="Tìm kiếm link, mô tả, hoặc nguồn...">
+            </div>
+        </div>
+
+        <!-- Thống kê -->
+        <div class="row mb-4 fade-in">
+            <div class="col-md-3 col-sm-6">
+                <div class="stats-card">
+                    <h3 id="totalLinks">0</h3>
+                    <p><i class="fas fa-link"></i> Tổng số link</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="stats-card" style="background: var(--success-gradient);">
+                    <h3 id="totalClicks">0</h3>
+                    <p><i class="fas fa-mouse-pointer"></i> Tổng lượt click</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="stats-card" style="background: var(--warning-gradient);">
+                    <h3 id="favoriteLinks">0</h3>
+                    <p><i class="fas fa-star"></i> Link yêu thích</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="stats-card" style="background: var(--secondary-gradient);">
+                    <h3 id="todayAdded">0</h3>
+                    <p><i class="fas fa-calendar-plus"></i> Thêm hôm nay</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Danh sách link theo thư mục -->
+        <div class="folder-section fade-in">
+            <div class="folder-header">
+                <h5><i class="fas fa-folder-open"></i> Links chưa đánh dấu</h5>
+                <div class="folder-count" id="unmarkedCount">0</div>
+            </div>
+            <div class="folder-content">
+                <div id="unmarkedLinksList"></div>
+            </div>
+        </div>
+
+        <div class="folder-section fade-in">
+            <div class="folder-header" style="background: var(--warning-gradient);">
+                <h5><i class="fas fa-star"></i> Links yêu thích</h5>
+                <div class="folder-count" id="markedCount">0</div>
+            </div>
+            <div class="folder-content">
+                <div id="markedLinksList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal chỉnh sửa -->
+    <div class="modal fade" id="editModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-edit"></i> Chỉnh sửa Link</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="editLinkForm">
+                        <input type="hidden" id="editLinkId">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">URL *</label>
+                            <div class="input-group">
+                                <input type="url" class="form-control" id="editLinkUrl" required>
+                                <button class="btn btn-dark" type="button" id="pasteEditUrlBtn" title="Dán URL">
+                                    <i class="fas fa-paste"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Nguồn đầu vào</label>
+                                <select class="form-select" id="editLinkInputSource">
+                                    <option value="">Chọn nguồn đầu vào</option>
+                                    <option value="account1">Nick Hoàng</option>
+                                    <option value="account2">Nick Thoa</option>
+                                    <option value="account3">Nick Trọng</option>
+                                    <option value="account4">Nick Hải</option>
+                                    <option value="account5">Nick PTrong</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Nguồn đầu ra</label>
+                                <select class="form-select" id="editLinkOutputSource">
+                                    <option value="">Chọn nguồn đầu ra</option>
+                                    <option value="account1">Nick Hoàng</option>
+                                    <option value="account2">Nick Thoa</option>
+                                    <option value="account3">Nick Trọng</option>
+                                    <option value="account4">Nick Hải</option>
+                                    <option value="account5">Nick PTrong</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Mô tả</label>
+                            <textarea class="form-control" id="editLinkDescription" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer p-4">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i> Hủy
+                    </button>
+                    <button type="button" class="btn btn-primary" id="saveEditBtn">
+                        <i class="fas fa-save"></i> Lưu thay đổi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module">
+        // Import Firebase
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { 
+            getFirestore, 
+            collection, 
+            addDoc, 
+            getDocs, 
+            doc, 
+            updateDoc, 
+            deleteDoc, 
+            query, 
+            where, 
+            orderBy 
+        } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyCQFPHkGTGnk6NZcjTDu60yvZYlimHMJq0",
+            authDomain: "manage-link.firebaseapp.com",
+            projectId: "manage-link",
+            storageBucket: "manage-link.firebasestorage.app",
+            messagingSenderId: "656933535765",
+            appId: "1:656933535765:web:a6a56cd7f6134191d1ce1c",
+            measurementId: "G-R7390EVKLY"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Global variables
+        let allLinks = [];
+        let editModal;
+
+        // DOM Elements
+        const addLinkForm = document.getElementById('addLinkForm');
+        const unmarkedLinksList = document.getElementById('unmarkedLinksList');
+        const markedLinksList = document.getElementById('markedLinksList');
+        const searchInput = document.getElementById('searchInput');
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            editModal = new bootstrap.Modal(document.getElementById('editModal'));
+            loadLinks();
+            setupEventListeners();
+            updateStats();
+        });
+
+        // Setup event listeners
+        function setupEventListeners() {
+            addLinkForm.addEventListener('submit', handleAddLink);
+            searchInput.addEventListener('input', filterAndDisplayLinks);
+            document.getElementById('saveEditBtn').addEventListener('click', handleEditSave);
+            
+            // Thêm event listeners cho nút dán
+            document.getElementById('pasteUrlBtn').addEventListener('click', handlePasteUrl);
+            document.getElementById('pasteEditUrlBtn').addEventListener('click', handlePasteEditUrl);
+        }
+
+        // Handle paste URL in add form
+        async function handlePasteUrl() {
+            try {
+                const text = await navigator.clipboard.readText();
+                if (text && isValidUrl(text)) {
+                    document.getElementById('linkUrl').value = text.trim();
+                    showAlert('Đã dán URL thành công!', 'success');
+                } else {
+                    showAlert('Clipboard không chứa URL hợp lệ!', 'warning');
+                }
+            } catch (error) {
+                console.error('Error pasting URL:', error);
+                showAlert('Không thể dán URL. Vui lòng kiểm tra quyền truy cập clipboard.', 'danger');
+            }
+        }
+
+        // Handle paste URL in edit modal
+        async function handlePasteEditUrl() {
+            try {
+                const text = await navigator.clipboard.readText();
+                if (text && isValidUrl(text)) {
+                    document.getElementById('editLinkUrl').value = text.trim();
+                    showAlert('Đã dán URL thành công!', 'success');
+                } else {
+                    showAlert('Clipboard không chứa URL hợp lệ!', 'warning');
+                }
+            } catch (error) {
+                console.error('Error pasting URL:', error);
+                showAlert('Không thể dán URL. Vui lòng kiểm tra quyền truy cập clipboard.', 'danger');
+            }
+        }
+
+        // Validate URL
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch {
+                return false;
+            }
+        }
+
+        // Add new link
+        async function handleAddLink(e) {
+            e.preventDefault();
+            
+            const url = document.getElementById('linkUrl').value.trim();
+            const inputSource = document.getElementById('linkInputSource').value;
+            const outputSource = document.getElementById('linkOutputSource').value;
+            const description = document.getElementById('linkDescription').value.trim();
+            
+            try {
+                // Check if URL already exists
+                const q = query(collection(db, 'links'), where('url', '==', url));
+                const querySnapshot = await getDocs(q);
+                
+                if (!querySnapshot.empty) {
+                    showAlert('Link này đã tồn tại! Vui lòng thêm link khác.', 'danger');
+                    return;
+                }
+                
+                // Add new link
+                const linkData = {
+                    url: url,
+                    title: extractTitleFromUrl(url),
+                    inputSource: inputSource,
+                    outputSource: outputSource,
+                    description: description,
+                    createdAt: new Date(),
+                    clickCount: 0,
+                    isMarked: false,
+                    lastClicked: null
+                };
+                
+                await addDoc(collection(db, 'links'), linkData);
+                
+                showAlert('Thêm link thành công!', 'success');
+                addLinkForm.reset();
+                loadLinks();
+                updateStats();
+                
+            } catch (error) {
+                console.error('Error adding link:', error);
+                showAlert('Có lỗi xảy ra khi thêm link!', 'danger');
+            }
+        }
+
+        // Load all links
+        async function loadLinks() {
+            try {
+                console.log('Loading links from Firestore...');
+                
+                const testQuery = query(collection(db, 'links'));
+                const querySnapshot = await getDocs(testQuery);
+                
+                console.log('Successfully connected to Firestore');
+                console.log('Number of documents:', querySnapshot.size);
+                
+                allLinks = [];
+                
+                querySnapshot.forEach((doc) => {
+                    allLinks.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+                
+                filterAndDisplayLinks();
+                updateStats();
+                
+            } catch (error) {
+                console.error('Detailed error:', error);
+                showAlert(`Lỗi tải dữ liệu: ${error.message}`, 'danger');
+                
+                if (error.code === 'permission-denied') {
+                    showAlert('Lỗi quyền truy cập! Vui lòng kiểm tra Firestore Rules.', 'warning');
+                }
+            }
+        }
+
+        // Filter and display links
+        function filterAndDisplayLinks() {
+            let filteredLinks = [...allLinks];
+            
+            // Search filter
+            const searchTerm = searchInput.value.toLowerCase();
+            if (searchTerm) {
+                filteredLinks = filteredLinks.filter(link => 
+                    link.title.toLowerCase().includes(searchTerm) ||
+                    link.url.toLowerCase().includes(searchTerm) ||
+                    link.description.toLowerCase().includes(searchTerm) ||
+                    (link.inputSource && getAccountName(link.inputSource).toLowerCase().includes(searchTerm)) ||
+                    (link.outputSource && getAccountName(link.outputSource).toLowerCase().includes(searchTerm))
+                );
+            }
+            
+            // Sort by newest
+            filteredLinks.sort((a, b) => {
+                return new Date(b.createdAt.seconds * 1000) - new Date(a.createdAt.seconds * 1000);
+            });
+            
+            // Separate marked and unmarked links
+            const unmarkedLinks = filteredLinks.filter(link => !link.isMarked);
+            const markedLinks = filteredLinks.filter(link => link.isMarked);
+            
+            // Update counts
+            document.getElementById('unmarkedCount').textContent = unmarkedLinks.length;
+            document.getElementById('markedCount').textContent = markedLinks.length;
+            
+            displayLinks(unmarkedLinks, unmarkedLinksList, 'Chưa có link nào chưa được đánh dấu');
+            displayLinks(markedLinks, markedLinksList, 'Chưa có link yêu thích nào');
+        }
+
+        // Display links
+        function displayLinks(links, container, emptyMessage) {
+            if (links.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-folder-open"></i>
+                        <h5>${emptyMessage}</h5>
+                        <p>Thêm link mới để bắt đầu quản lý</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = links.map(link => `
+                <div class="link-item fade-in">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-center mb-2">
+                                <a href="#" class="link-title" onclick="window.visitLink('${link.id}', '${link.url}')">${link.title}</a>
+                                ${link.isMarked ? '<i class="fas fa-star text-warning ms-2"></i>' : ''}
+                            </div>
+                            
+                            <div class="link-url">${link.url}</div>
+                            
+                            ${link.description ? `<div class="link-description">${link.description}</div>` : ''}
+                            
+                            <div class="mb-3">
+                                ${link.inputSource ? `<span class="badge badge-input">
+                                    <i class="fas fa-sign-in-alt"></i> ${getAccountName(link.inputSource)}
+                                </span>` : ''}
+                                ${link.outputSource ? `<span class="badge badge-output">
+                                    <i class="fas fa-sign-out-alt"></i> ${getAccountName(link.outputSource)}
+                                </span>` : ''}
+                            </div>
+                            
+                            <div class="link-meta">
+                                <div class="link-stats">
+                                    <span><i class="fas fa-calendar"></i> ${formatDate(link.createdAt)}</span>
+                                    <span><i class="fas fa-mouse-pointer"></i> ${link.clickCount || 0} clicks</span>
+                                    ${link.lastClicked ? `<span><i class="fas fa-clock"></i> ${formatDate(link.lastClicked)}</span>` : ''}
+                                </div>
+                                
+                                <div class="link-actions">
+                                    <button class="btn-action btn-visit" onclick="window.visitLink('${link.id}', '${link.url}')" title="Truy cập">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </button>
+                                    <button class="btn-action btn-edit" onclick="window.editLink('${link.id}')" title="Chỉnh sửa">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-action btn-star ${link.isMarked ? 'starred' : ''}" onclick="window.toggleMark('${link.id}')" title="${link.isMarked ? 'Bỏ yêu thích' : 'Yêu thích'}">
+                                        <i class="fas fa-star"></i>
+                                    </button>
+                                    <button class="btn-action btn-copy" onclick="window.copyLink('${link.url}')" title="Sao chép">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                    <button class="btn-action btn-delete" onclick="window.deleteLink('${link.id}')" title="Xóa">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Visit link and update click count
+        async function visitLink(linkId, url) {
+            try {
+                const linkRef = doc(db, 'links', linkId);
+                const link = allLinks.find(l => l.id === linkId);
+                
+                await updateDoc(linkRef, {
+                    clickCount: (link.clickCount || 0) + 1,
+                    lastClicked: new Date()
+                });
+                
+                // Open link in new tab
+                window.open(url, '_blank');
+                
+                loadLinks();
+                
+            } catch (error) {
+                console.error('Error updating click count:', error);
+                // Still open the link even if update fails
+                window.open(url, '_blank');
+            }
+        }
+
+        // Edit link
+        function editLink(linkId) {
+            const link = allLinks.find(l => l.id === linkId);
+            if (!link) return;
+            
+            document.getElementById('editLinkId').value = linkId;
+            document.getElementById('editLinkUrl').value = link.url;
+            document.getElementById('editLinkInputSource').value = link.inputSource || '';
+            document.getElementById('editLinkOutputSource').value = link.outputSource || '';
+            document.getElementById('editLinkDescription').value = link.description || '';
+            
+            editModal.show();
+        }
+
+        // Handle edit save
+        async function handleEditSave() {
+            const linkId = document.getElementById('editLinkId').value;
+            const url = document.getElementById('editLinkUrl').value.trim();
+            const inputSource = document.getElementById('editLinkInputSource').value;
+            const outputSource = document.getElementById('editLinkOutputSource').value;
+            const description = document.getElementById('editLinkDescription').value.trim();
+            
+            try {
+                const linkRef = doc(db, 'links', linkId);
+                
+                await updateDoc(linkRef, {
+                    url: url,
+                    title: extractTitleFromUrl(url),
+                    inputSource: inputSource,
+                    outputSource: outputSource,
+                    description: description,
+                    updatedAt: new Date()
+                });
+                
+                editModal.hide();
+                showAlert('Cập nhật link thành công!', 'success');
+                loadLinks();
+                
+            } catch (error) {
+                console.error('Error updating link:', error);
+                showAlert('Có lỗi khi cập nhật link!', 'danger');
+            }
+        }
+
+        // Toggle mark
+        async function toggleMark(linkId) {
+            try {
+                const linkRef = doc(db, 'links', linkId);
+                const link = allLinks.find(l => l.id === linkId);
+                
+                await updateDoc(linkRef, {
+                    isMarked: !link.isMarked
+                });
+                
+                loadLinks();
+                
+            } catch (error) {
+                console.error('Error toggling mark:', error);
+                showAlert('Có lỗi khi cập nhật đánh dấu!', 'danger');
+            }
+        }
+
+        // Copy link
+        function copyLink(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                showAlert('Đã sao chép link vào clipboard!', 'info');
+            }).catch(err => {
+                console.error('Error copying link:', err);
+                showAlert('Không thể sao chép link!', 'danger');
+            });
+        }
+
+        // Delete link
+        async function deleteLink(linkId) {
+            if (!confirm('Bạn có chắc chắn muốn xóa link này không?')) return;
+            
+            try {
+                await deleteDoc(doc(db, 'links', linkId));
+                showAlert('Đã xóa link thành công!', 'success');
+                loadLinks();
+                updateStats();
+                
+            } catch (error) {
+                console.error('Error deleting link:', error);
+                showAlert('Có lỗi khi xóa link!', 'danger');
+            }
+        }
+
+        // Update statistics
+        function updateStats() {
+            const totalLinks = allLinks.length;
+            const totalClicks = allLinks.reduce((sum, link) => sum + (link.clickCount || 0), 0);
+            const markedLinks = allLinks.filter(link => link.isMarked).length;
+            
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const todayAdded = allLinks.filter(link => {
+                const linkDate = new Date(link.createdAt.seconds * 1000);
+                linkDate.setHours(0, 0, 0, 0);
+                return linkDate.getTime() === today.getTime();
+            }).length;
+            
+            // Animate counters
+            animateCounter('totalLinks', totalLinks);
+            animateCounter('totalClicks', totalClicks);
+            animateCounter('favoriteLinks', markedLinks);
+            animateCounter('todayAdded', todayAdded);
+        }
+
+        // Animate counter
+        function animateCounter(elementId, targetValue) {
+            const element = document.getElementById(elementId);
+            const currentValue = parseInt(element.textContent) || 0;
+            const increment = Math.ceil(Math.abs(targetValue - currentValue) / 20);
+            
+            if (currentValue < targetValue) {
+                const newValue = Math.min(currentValue + increment, targetValue);
+                element.textContent = newValue;
+                if (newValue < targetValue) {
+                    setTimeout(() => animateCounter(elementId, targetValue), 50);
+                }
+            } else if (currentValue > targetValue) {
+                const newValue = Math.max(currentValue - increment, targetValue);
+                element.textContent = newValue;
+                if (newValue > targetValue) {
+                    setTimeout(() => animateCounter(elementId, targetValue), 50);
+                }
+            }
+        }
+
+        // Get account name
+        function getAccountName(account) {
+            const accounts = {
+                'account1': 'Nick Hoàng',
+                'account2': 'Nick Thoa',
+                'account3': 'Nick Trọng',
+                'account4': 'Nick Hải',
+                'account5': 'Nick PTrong'
+            };
+            return accounts[account] || account;
+        }
+
+        // Utility functions
+        function extractTitleFromUrl(url) {
+            try {
+                const urlObj = new URL(url);
+                return urlObj.hostname.replace('www.', '');
+            } catch {
+                return url;
+            }
+        }
+
+        function formatDate(timestamp) {
+            if (!timestamp) return '';
+            const date = timestamp.seconds ? new Date(timestamp.seconds * 1000) : new Date(timestamp);
+            return date.toLocaleDateString('vi-VN', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function showAlert(message, type) {
+            // Remove existing alerts
+            const existingAlerts = document.querySelectorAll('.alert');
+            existingAlerts.forEach(alert => alert.remove());
+            
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+            alertDiv.style.cssText = `
+                top: 20px;
+                right: 20px;
+                z-index: 9999;
+                min-width: 300px;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            `;
+            
+            let icon = '';
+            switch(type) {
+                case 'success': icon = 'fas fa-check-circle'; break;
+                case 'danger': icon = 'fas fa-exclamation-circle'; break;
+                case 'warning': icon = 'fas fa-exclamation-triangle'; break;
+                case 'info': icon = 'fas fa-info-circle'; break;
+                default: icon = 'fas fa-bell';
+            }
+            
+            alertDiv.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="${icon} me-2"></i>
+                    <span>${message}</span>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            document.body.appendChild(alertDiv);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.classList.remove('show');
+                    setTimeout(() => alertDiv.remove(), 150);
+                }
+            }, 5000);
+        }
+
+        // Make functions global for onclick handlers
+        window.visitLink = visitLink;
+        window.editLink = editLink;
+        window.toggleMark = toggleMark;
+        window.copyLink = copyLink;
+        window.deleteLink = deleteLink;
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementsToAnimate = document.querySelectorAll('.fade-in');
+            elementsToAnimate.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
