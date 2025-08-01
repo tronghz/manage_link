@@ -30,14 +30,15 @@
             background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
             color: var(--dark);
             line-height: 1.6;
+            font-size: 14px; /* Giảm font-size cơ bản */
         }
 
-        /* Header */
+        /* Header - Mobile optimized */
         .header {
             background: white;
             box-shadow: var(--shadow);
-            padding: 1rem 0;
-            margin-bottom: 2rem;
+            padding: 0.75rem 0; /* Giảm padding */
+            margin-bottom: 1rem; /* Giảm margin */
             position: sticky;
             top: 0;
             z-index: 100;
@@ -45,7 +46,7 @@
 
         .header h1 {
             color: var(--primary);
-            font-size: 1.75rem;
+            font-size: 1.4rem; /* Giảm kích thước */
             font-weight: 700;
             margin: 0;
         }
@@ -53,16 +54,23 @@
         .header p {
             color: var(--secondary);
             margin: 0;
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* Giảm kích thước */
         }
 
-        /* Cards */
+        /* Container responsive */
+        .container {
+            padding: 0 0.75rem;
+            max-width: 100%;
+        }
+
+        /* Cards - Mobile optimized */
         .card {
             border: none;
-            border-radius: 12px;
+            border-radius: 8px; /* Giảm border-radius */
             box-shadow: var(--shadow);
             background: white;
             transition: all 0.2s ease;
+            margin-bottom: 1rem;
         }
 
         .card:hover {
@@ -73,49 +81,49 @@
         .card-header {
             background: var(--light);
             border-bottom: 1px solid var(--border);
-            border-radius: 12px 12px 0 0 !important;
-            padding: 1rem 1.5rem;
+            border-radius: 8px 8px 0 0 !important;
+            padding: 0.75rem 1rem; /* Giảm padding */
         }
 
         .card-header h5 {
             color: var(--dark);
-            font-size: 1rem;
+            font-size: 0.9rem; /* Giảm kích thước */
             font-weight: 600;
             margin: 0;
         }
 
         .card-body {
-            padding: 1.5rem;
+            padding: 1rem; /* Giảm padding */
         }
 
-        /* Forms */
+        /* Forms - Mobile optimized */
         .form-label {
             color: var(--dark);
             font-weight: 500;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            margin-bottom: 0.25rem; /* Giảm margin */
+            font-size: 0.8rem; /* Giảm kích thước */
         }
 
         .form-control, .form-select {
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.75rem;
-            font-size: 0.9rem;
+            border-radius: 6px; /* Giảm border-radius */
+            padding: 0.5rem; /* Giảm padding */
+            font-size: 0.85rem; /* Giảm kích thước */
             transition: all 0.2s ease;
             background: white;
         }
 
         .form-control:focus, .form-select:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1); /* Giảm shadow */
         }
 
-        /* Buttons */
+        /* Buttons - Mobile optimized */
         .btn {
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
+            border-radius: 6px; /* Giảm border-radius */
+            padding: 0.4rem 0.8rem; /* Giảm padding */
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* Giảm kích thước */
             transition: all 0.2s ease;
             border: none;
             cursor: pointer;
@@ -166,15 +174,15 @@
             color: white;
         }
 
-        /* Link Items */
+        /* Link Items - Mobile optimized */
         .link-item {
             background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
+            border-radius: 8px; /* Giảm border-radius */
+            padding: 1rem; /* Giảm padding */
+            margin-bottom: 0.75rem; /* Giảm margin */
             box-shadow: var(--shadow);
             transition: all 0.2s ease;
-            border-left: 4px solid var(--border);
+            border-left: 3px solid var(--border); /* Giảm border width */
         }
 
         .link-item:hover {
@@ -188,11 +196,12 @@
 
         .link-title {
             color: var(--dark);
-            font-size: 1.1rem;
+            font-size: 1rem; /* Giảm kích thước */
             font-weight: 600;
             text-decoration: none;
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem; /* Giảm margin */
+            line-height: 1.3;
         }
 
         .link-title:hover {
@@ -201,35 +210,48 @@
 
         .link-url {
             color: var(--secondary);
-            font-size: 0.85rem;
+            font-size: 0.75rem; /* Giảm kích thước */
             word-break: break-all;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem; /* Giảm margin */
             background: var(--light);
-            padding: 0.5rem;
-            border-radius: 6px;
+            padding: 0.4rem; /* Giảm padding */
+            border-radius: 4px; /* Giảm border-radius */
         }
 
         .link-description {
             color: var(--dark);
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
-            line-height: 1.5;
+            font-size: 0.8rem; /* Giảm kích thước */
+            margin-bottom: 0.5rem; /* Giảm margin */
+            line-height: 1.4;
         }
 
         .time-info {
             background: #fef3c7;
             color: #92400e;
-            padding: 0.5rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            margin-bottom: 0.75rem;
+            padding: 0.4rem; /* Giảm padding */
+            border-radius: 4px; /* Giảm border-radius */
+            font-size: 0.75rem; /* Giảm kích thước */
+            margin-bottom: 0.5rem; /* Giảm margin */
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* Giảm gap */
+            flex-wrap: wrap;
         }
 
-        /* Badges */
+        .quantity-info {
+            background: #e0f2fe;
+            color: #0277bd;
+            padding: 0.25rem 0.5rem; /* Giảm padding */
+            border-radius: 4px; /* Giảm border-radius */
+            font-size: 0.7rem; /* Giảm kích thước */
+            white-space: nowrap;
+        }
+
+        /* Badges - Mobile optimized */
         .badge {
-            border-radius: 20px;
-            padding: 0.25rem 0.75rem;
-            font-size: 0.75rem;
+            border-radius: 12px; /* Giảm border-radius */
+            padding: 0.2rem 0.5rem; /* Giảm padding */
+            font-size: 0.7rem; /* Giảm kích thước */
             font-weight: 500;
         }
 
@@ -246,22 +268,23 @@
         .link-item-account4 { border-left-color: #f59e0b; }
         .link-item-account5 { border-left-color: #8b5cf6; }
 
-        /* Actions */
+        /* Actions - Mobile optimized */
         .link-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem; /* Giảm gap */
             flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .btn-action {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+            width: 32px; /* Giảm kích thước */
+            height: 32px; /* Giảm kích thước */
+            border-radius: 6px; /* Giảm border-radius */
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 0;
-            font-size: 0.8rem;
+            font-size: 0.75rem; /* Giảm kích thước */
             transition: all 0.2s ease;
             border: 1px solid var(--border);
             background: white;
@@ -269,27 +292,26 @@
         }
 
         .btn-action:hover {
-            transform: translateY(-2px);
+            transform: translateY(-1px);
             box-shadow: var(--shadow);
         }
 
-        .btn-action.btn-visit:hover { color: var(--success); border-color: var(--success); }
         .btn-action.btn-edit:hover { color: var(--primary); border-color: var(--primary); }
         .btn-action.btn-star:hover { color: var(--warning); border-color: var(--warning); }
         .btn-action.btn-star.starred { color: var(--warning); border-color: var(--warning); background: #fef3c7; }
         .btn-action.btn-copy:hover { color: var(--secondary); border-color: var(--secondary); }
         .btn-action.btn-delete:hover { color: var(--danger); border-color: var(--danger); }
 
-        /* Folders */
+        /* Folders - Mobile optimized */
         .folder-section {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem; /* Giảm margin */
         }
 
         .folder-header {
             background: var(--primary);
             color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 12px 12px 0 0;
+            padding: 0.75rem 1rem; /* Giảm padding */
+            border-radius: 8px 8px 0 0; /* Giảm border-radius */
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -301,40 +323,49 @@
 
         .folder-header h5 {
             margin: 0;
-            font-size: 1rem;
+            font-size: 0.9rem; /* Giảm kích thước */
             font-weight: 600;
         }
 
         .folder-count {
             background: rgba(255,255,255,0.2);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem; /* Giảm padding */
+            border-radius: 12px; /* Giảm border-radius */
+            font-size: 0.75rem; /* Giảm kích thước */
             font-weight: 500;
         }
 
         .folder-content {
             background: white;
-            border-radius: 0 0 12px 12px;
-            padding: 1.5rem;
+            border-radius: 0 0 8px 8px; /* Giảm border-radius */
+            padding: 1rem; /* Giảm padding */
         }
 
-        /* Empty state */
+        /* Empty state - Mobile optimized */
         .empty-state {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 2rem 1rem; /* Giảm padding */
             color: var(--secondary);
         }
 
         .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2rem; /* Giảm kích thước */
+            margin-bottom: 0.75rem; /* Giảm margin */
             opacity: 0.3;
         }
 
-        /* Modal */
+        .empty-state h6 {
+            font-size: 0.9rem; /* Giảm kích thước */
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            font-size: 0.8rem; /* Giảm kích thước */
+        }
+
+        /* Modal - Mobile optimized */
         .modal-content {
-            border-radius: 12px;
+            border-radius: 8px; /* Giảm border-radius */
             border: none;
             box-shadow: var(--shadow-lg);
         }
@@ -342,58 +373,156 @@
         .modal-header {
             background: var(--light);
             border-bottom: 1px solid var(--border);
-            border-radius: 12px 12px 0 0;
-            padding: 1.5rem;
+            border-radius: 8px 8px 0 0; /* Giảm border-radius */
+            padding: 1rem; /* Giảm padding */
         }
 
         .modal-title {
             color: var(--dark);
-            font-size: 1.1rem;
+            font-size: 1rem; /* Giảm kích thước */
             font-weight: 600;
         }
 
         .modal-body {
-            padding: 1.5rem;
+            padding: 1rem; /* Giảm padding */
         }
 
         .modal-footer {
             border-top: 1px solid var(--border);
-            padding: 1.5rem;
+            padding: 1rem; /* Giảm padding */
         }
 
-        /* Input group */
+        /* Input group - Mobile optimized */
         .input-group .btn {
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 6px 6px 0; /* Giảm border-radius */
         }
 
         .input-group .form-control {
-            border-radius: 8px 0 0 8px;
+            border-radius: 6px 0 0 6px; /* Giảm border-radius */
         }
 
-        /* Alerts */
+        /* Alerts - Mobile optimized */
         .alert {
-            border-radius: 8px;
+            border-radius: 6px; /* Giảm border-radius */
             border: none;
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* Giảm kích thước */
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* Enhanced Mobile Breakpoints */
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 575.98px) {
             .container {
-                padding: 0 1rem;
+                padding: 0 0.5rem;
             }
             
             .header h1 {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
+            }
+            
+            .header p {
+                font-size: 0.75rem;
+            }
+            
+            .card-body {
+                padding: 0.75rem;
             }
             
             .link-item {
-                padding: 1rem;
+                padding: 0.75rem;
+            }
+            
+            .link-title {
+                font-size: 0.9rem;
+            }
+            
+            .link-url {
+                font-size: 0.7rem;
             }
             
             .link-actions {
                 justify-content: center;
-                margin-top: 1rem;
+                margin-top: 0.75rem;
+                gap: 0.5rem;
+            }
+            
+            .btn-action {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .row .col-md-6 {
+                margin-bottom: 0.75rem;
+            }
+            
+            .modal-dialog {
+                margin: 0.5rem;
+            }
+            
+            .time-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            
+            .quantity-info {
+                margin-top: 0.25rem;
+            }
+        }
+
+        /* Small devices (landscape phones, 576px and up) */
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            .container {
+                padding: 0 0.75rem;
+            }
+            
+            .link-actions {
+                justify-content: flex-end;
+            }
+        }
+
+        /* Medium devices (tablets, 768px and up) */
+        @media (min-width: 768px) {
+            body {
+                font-size: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .header p {
+                font-size: 0.85rem;
+            }
+            
+            .card-body {
+                padding: 1.25rem;
+            }
+            
+            .link-item {
+                padding: 1.25rem;
+            }
+        }
+
+        /* Large devices (desktops, 992px and up) */
+        @media (min-width: 992px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .container {
+                max-width: 960px;
+            }
+            
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .card-body {
+                padding: 1.5rem;
+            }
+            
+            .link-item {
+                padding: 1.5rem;
             }
         }
 
@@ -418,13 +547,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 1.5rem; /* Giảm padding */
             color: var(--secondary);
         }
 
         .spinner {
-            width: 20px;
-            height: 20px;
+            width: 18px; /* Giảm kích thước */
+            height: 18px; /* Giảm kích thước */
             border: 2px solid var(--border);
             border-top: 2px solid var(--primary);
             border-radius: 50%;
@@ -435,6 +564,50 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        /* Search input */
+        #searchInput {
+            margin-bottom: 0.75rem !important;
+        }
+
+        /* Link metadata layout for mobile */
+        .link-metadata {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        @media (min-width: 576px) {
+            .link-metadata {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        /* Improved touch targets for mobile */
+        @media (max-width: 575.98px) {
+            .btn-action {
+                min-width: 44px;
+                min-height: 44px;
+            }
+            
+            .form-control, .form-select, .btn {
+                min-height: 44px;
+            }
+        }
+
+        /* Fixed positioning for mobile alerts */
+        @media (max-width: 575.98px) {
+            .alert.position-fixed {
+                left: 10px !important;
+                right: 10px !important;
+                top: 10px !important;
+                width: auto !important;
+                min-width: auto !important;
+            }
         }
     </style>
 </head>
@@ -451,7 +624,7 @@
 
     <div class="container">
         <!-- Form thêm link -->
-        <div class="card mb-4 fade-in">
+        <div class="card mb-3 fade-in">
             <div class="card-header">
                 <h5><i class="fas fa-plus me-2"></i>Thêm Link Mới</h5>
             </div>
@@ -480,8 +653,8 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Mô tả</label>
-                            <input type="text" class="form-control" id="linkDescription" placeholder="Mô tả ngắn gọn...">
+                            <label class="form-label">Số lượng sản phẩm</label>
+                            <input type="number" class="form-control" id="linkQuantity" placeholder="0" min="0">
                         </div>
                     </div>
                     
@@ -494,6 +667,11 @@
                             <label class="form-label">Thời gian kết thúc</label>
                             <input type="time" class="form-control" id="endTime">
                         </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Mô tả</label>
+                        <input type="text" class="form-control" id="linkDescription" placeholder="Mô tả ngắn gọn...">
                     </div>
                     
                     <div class="text-center">
@@ -547,20 +725,22 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Nguồn đầu vào</label>
-                            <select class="form-select" id="editLinkInputSource">
-                                <option value="">Chọn nguồn</option>
-                                <option value="account1">Nick Hoàng</option>
-                                <option value="account2">Nick Thoa</option>
-                                <option value="account3">Nick Trọng</option>
-                                <option value="account4">Nick Hải</option>
-                                <option value="account5">Nick PTrong</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Mô tả</label>
-                            <input type="text" class="form-control" id="editLinkDescription">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nguồn đầu vào</label>
+                                <select class="form-select" id="editLinkInputSource">
+                                    <option value="">Chọn nguồn</option>
+                                    <option value="account1">Nick Hoàng</option>
+                                    <option value="account2">Nick Thoa</option>
+                                    <option value="account3">Nick Trọng</option>
+                                    <option value="account4">Nick Hải</option>
+                                    <option value="account5">Nick PTrong</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Số lượng sản phẩm</label>
+                                <input type="number" class="form-control" id="editLinkQuantity" min="0">
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -571,6 +751,10 @@
                                 <label class="form-label">Thời gian kết thúc</label>
                                 <input type="time" class="form-control" id="editEndTime">
                             </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mô tả</label>
+                            <input type="text" class="form-control" id="editLinkDescription">
                         </div>
                     </form>
                 </div>
@@ -638,546 +822,528 @@
             document.getElementById('saveEditBtn').addEventListener('click', handleEditSave);
             document.getElementById('pasteUrlBtn').addEventListener('click', handlePasteUrl);
             document.getElementById('pasteEditUrlBtn').addEventListener('click', handlePasteEditUrl);
-        }
-
-        // Handle paste URL
-        async function handlePasteUrl() {
-            try {
-                const text = await navigator.clipboard.readText();
-                if (text && isValidUrl(text)) {
-                    document.getElementById('linkUrl').value = text.trim();
-                    showAlert('Đã dán URL thành công!', 'success');
-                } else {
-                    showAlert('Clipboard không chứa URL hợp lệ!', 'warning');
-                }
-            } catch (error) {
-                showAlert('Không thể dán URL từ clipboard!', 'danger');
-            }
-        }
-
-        async function handlePasteEditUrl() {
-            try {
-                const text = await navigator.clipboard.readText();
-                if (text && isValidUrl(text)) {
-                    document.getElementById('editLinkUrl').value = text.trim();
-                    showAlert('Đã dán URL thành công!', 'success');
-                } else {
-                    showAlert('Clipboard không chứa URL hợp lệ!', 'warning');
-                }
-            } catch (error) {
-                showAlert('Không thể dán URL từ clipboard!', 'danger');
-            }
-        }
-
-        function isValidUrl(string) {
-            try {
-                new URL(string);
-                return true;
-            } catch {
-                return false;
-            }
-        }
-
-        // Add new link
-        async function handleAddLink(e) {
-            e.preventDefault();
-            
-            const url = document.getElementById('linkUrl').value.trim();
-            const inputSource = document.getElementById('linkInputSource').value;
-            const description = document.getElementById('linkDescription').value.trim();
-            const startTime = document.getElementById('startTime').value;
-            const endTime = document.getElementById('endTime').value;
-            
-            try {
-                // Check if URL already exists
-                const q = query(collection(db, 'links'), where('url', '==', url));
-                const querySnapshot = await getDocs(q);
-                
-                if (!querySnapshot.empty) {
-                    showAlert('Link này đã tồn tại!', 'warning');
-                    return;
-                }
-                
-                const linkData = {
-                    url: url,
-                    title: extractTitleFromUrl(url),
-                    inputSource: inputSource,
-                    description: description,
-                    startTime: startTime,
-                    endTime: endTime,
-                    createdAt: new Date(),
-                    isMarked: false
-                };
-                
-                await addDoc(collection(db, 'links'), linkData);
-                
-                showAlert('Thêm link thành công!', 'success');
-                addLinkForm.reset();
-                loadLinks();
-                
-            } catch (error) {
-                console.error('Error adding link:', error);
-                showAlert('Có lỗi xảy ra khi thêm link!', 'danger');
-            }
-        }
-
-        // Load links
-        async function loadLinks() {
-            try {
-                showLoading(unmarkedLinksList);
-                showLoading(markedLinksList);
-                
-                const querySnapshot = await getDocs(collection(db, 'links'));
-                
-                allLinks = [];
-                querySnapshot.forEach((doc) => {
-                    allLinks.push({
-                        id: doc.id,
-                        ...doc.data()
-                    });
-                });
-                
-                displayLinks();
-                
-            } catch (error) {
-                console.error('Error loading links:', error);
-                showAlert('Lỗi tải dữ liệu!', 'danger');
-            }
-        }
-
-        function showLoading(container) {
-            container.innerHTML = `
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Đang tải...
-                </div>
-            `;
-        }
-
-        // Display links
-        function displayLinks() {
-            allLinks.sort((a, b) => {
-                const aTime = a.createdAt?.seconds || 0;
-                const bTime = b.createdAt?.seconds || 0;
-                return bTime - aTime;
-            });
-            
-            const unmarkedLinks = allLinks.filter(link => !link.isMarked);
-            const markedLinks = allLinks.filter(link => link.isMarked);
-            
-            document.getElementById('unmarkedCount').textContent = unmarkedLinks.length;
-            document.getElementById('markedCount').textContent = markedLinks.length;
-            
-            renderLinks(unmarkedLinks, unmarkedLinksList, 'Chưa có link nào');
-            renderLinks(markedLinks, markedLinksList, 'Chưa có link yêu thích');
-        }
-
-        function renderLinks(links, container, emptyMessage) {
-            if (links.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-folder-open"></i>
-                        <h6>${emptyMessage}</h6>
-                        <p class="mb-0">Thêm link mới để bắt đầu</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            container.innerHTML = links.map(link => `
-                <div class="link-item ${link.inputSource ? 'link-item-' + link.inputSource : ''} ${link.isMarked ? 'starred' : ''} fade-in">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <a href="#" class="link-title" onclick="window.visitLink('${link.id}', '${link.url}')">
-                            ${link.title}
-                            ${link.isMarked ? '<i class="fas fa-star text-warning ms-2"></i>' : ''}
-                        </a>
-                    </div>
-                    
-                    <div class="link-url">${link.url}</div>
-                    
-                    ${link.description ? `<div class="link-description">${link.description}</div>` : ''}
-                    
-                    ${(link.startTime || link.endTime) ? `
-                        <div class="time-info">
-                            <i class="fas fa-clock me-1"></i>
-                            ${link.startTime ? `${link.startTime}` : ''}
-                            ${link.startTime && link.endTime ? ' - ' : ''}
-                            ${link.endTime ? `${link.endTime}` : ''}
-                        </div>
-                    ` : ''}
-                    
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            ${link.inputSource ? `<span class="badge badge-${link.inputSource}">
-                                ${getAccountName(link.inputSource)}
-                            </span>` : ''}
-                        </div>
-                        
-                        <div class="link-actions">
-                            <button class="btn-action btn-visit" onclick="window.visitLink('${link.id}', '${link.url}')" title="Truy cập">
-                                <i class="fas fa-external-link-alt"></i>
-                            </button>
-                            <button class="btn-action btn-edit" onclick="window.editLink('${link.id}')" title="Chỉnh sửa">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-action btn-star ${link.isMarked ? 'starred' : ''}" onclick="window.toggleMark('${link.id}')" title="${link.isMarked ? 'Bỏ yêu thích' : 'Yêu thích'}">
-                                <i class="fas fa-star"></i>
-                            </button>
-                            <button class="btn-action btn-copy" onclick="window.copyLink('${link.url}')" title="Sao chép">
-                                <i class="fas fa-copy"></i>
-                            </button>
-                            <button class="btn-action btn-delete" onclick="window.deleteLink('${link.id}')" title="Xóa">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Link actions
-        function visitLink(linkId, url) {
-            window.open(url, '_blank');
-        }
-
-        function editLink(linkId) {
-           const link = allLinks.find(l => l.id === linkId);
-           if (!link) return;
-           
-           document.getElementById('editLinkId').value = linkId;
-           document.getElementById('editLinkUrl').value = link.url;
-           document.getElementById('editLinkInputSource').value = link.inputSource || '';
-           document.getElementById('editLinkDescription').value = link.description || '';
-           document.getElementById('editStartTime').value = link.startTime || '';
-           document.getElementById('editEndTime').value = link.endTime || '';
-           
-           editModal.show();
        }
 
-       async function handleEditSave() {
-           const linkId = document.getElementById('editLinkId').value;
-           const url = document.getElementById('editLinkUrl').value.trim();
-           const inputSource = document.getElementById('editLinkInputSource').value;
-           const description = document.getElementById('editLinkDescription').value.trim();
-           const startTime = document.getElementById('editStartTime').value;
-           const endTime = document.getElementById('editEndTime').value;
+       // Handle paste URL
+       async function handlePasteUrl() {
+           try {
+               const text = await navigator.clipboard.readText();
+               if (text && isValidUrl(text)) {
+                   document.getElementById('linkUrl').value = text.trim();
+                   showAlert('Đã dán URL thành công!', 'success');
+               } else {
+                   showAlert('Clipboard không chứa URL hợp lệ!', 'warning');
+               }
+           } catch (error) {
+               showAlert('Không thể dán URL từ clipboard!', 'danger');
+           }
+       }
+
+       async function handlePasteEditUrl() {
+           try {
+               const text = await navigator.clipboard.readText();
+               if (text && isValidUrl(text)) {
+                   document.getElementById('editLinkUrl').value = text.trim();
+                   showAlert('Đã dán URL thành công!', 'success');
+               } else {
+                   showAlert('Clipboard không chứa URL hợp lệ!', 'warning');
+               }
+           } catch (error) {
+               showAlert('Không thể dán URL từ clipboard!', 'danger');
+           }
+       }
+
+       function isValidUrl(string) {
+           try {
+               new URL(string);
+               return true;
+           } catch {
+               return false;
+           }
+       }
+
+       // Add new link
+       async function handleAddLink(e) {
+           e.preventDefault();
+           
+           const url = document.getElementById('linkUrl').value.trim();
+           const inputSource = document.getElementById('linkInputSource').value;
+           const quantity = document.getElementById('linkQuantity').value;
+           const description = document.getElementById('linkDescription').value.trim();
+           const startTime = document.getElementById('startTime').value;
+           const endTime = document.getElementById('endTime').value;
            
            try {
-               const linkRef = doc(db, 'links', linkId);
+               // Check if URL already exists
+               const q = query(collection(db, 'links'), where('url', '==', url));
+               const querySnapshot = await getDocs(q);
                
-               await updateDoc(linkRef, {
+               if (!querySnapshot.empty) {
+                   showAlert('Link này đã tồn tại!', 'warning');
+                   return;
+               }
+               
+               const linkData = {
                    url: url,
                    title: extractTitleFromUrl(url),
                    inputSource: inputSource,
+                   quantity: quantity ? parseInt(quantity) : null,
                    description: description,
                    startTime: startTime,
                    endTime: endTime,
-                   updatedAt: new Date()
-               });
-               
-               editModal.hide();
-               showAlert('Cập nhật thành công!', 'success');
-               loadLinks();
-               
-           } catch (error) {
-               console.error('Error updating link:', error);
-               showAlert('Có lỗi khi cập nhật!', 'danger');
-           }
-       }
-
-       async function toggleMark(linkId) {
-           try {
-               const linkRef = doc(db, 'links', linkId);
-               const link = allLinks.find(l => l.id === linkId);
-               
-               await updateDoc(linkRef, {
-                   isMarked: !link.isMarked
-               });
-               
-               loadLinks();
-               
-           } catch (error) {
-               console.error('Error toggling mark:', error);
-               showAlert('Có lỗi khi cập nhật!', 'danger');
-           }
-       }
-
-       async function copyLink(url) {
-           try {
-               await navigator.clipboard.writeText(url);
-               showAlert('Đã sao chép link!', 'success');
-           } catch (error) {
-               showAlert('Không thể sao chép link!', 'danger');
-           }
-       }
-
-       async function deleteLink(linkId) {
-           if (!confirm('Bạn có chắc muốn xóa link này?')) return;
-           
-           try {
-               await deleteDoc(doc(db, 'links', linkId));
-               showAlert('Đã xóa link!', 'success');
-               loadLinks();
-               
-           } catch (error) {
-               console.error('Error deleting link:', error);
-               showAlert('Có lỗi khi xóa link!', 'danger');
-           }
-       }
-
-       // Utility functions
-       function getAccountName(account) {
-           const accounts = {
-               'account1': 'Nick Hoàng',
-               'account2': 'Nick Thoa',  
-               'account3': 'Nick Trọng',
-               'account4': 'Nick Hải',
-               'account5': 'Nick PTrong'
-           };
-           return accounts[account] || account;
-       }
-
-       function extractTitleFromUrl(url) {
-           try {
-               const urlObj = new URL(url);
-               return urlObj.hostname.replace('www.', '');
-           } catch {
-               return url;
-           }
-       }
-
-       function showAlert(message, type) {
-           // Remove existing alerts
-           const existingAlerts = document.querySelectorAll('.alert');
-           existingAlerts.forEach(alert => alert.remove());
-           
-           const alertDiv = document.createElement('div');
-           alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
-           alertDiv.style.cssText = `
-               top: 20px;
-               right: 20px;
-               z-index: 9999;
-               min-width: 280px;
-               box-shadow: var(--shadow-lg);
-           `;
-           
-           let icon = '';
-           switch(type) {
-               case 'success': icon = 'fas fa-check-circle'; break;
-               case 'danger': icon = 'fas fa-exclamation-circle'; break;
-               case 'warning': icon = 'fas fa-exclamation-triangle'; break;
-               case 'info': icon = 'fas fa-info-circle'; break;
-               default: icon = 'fas fa-bell';
-           }
-           
-           alertDiv.innerHTML = `
-               <div class="d-flex align-items-center">
-                   <i class="${icon} me-2"></i>
-                   <span>${message}</span>
-               </div>
-               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-           `;
-           
-           document.body.appendChild(alertDiv);
-           
-           // Auto remove after 4 seconds
-           setTimeout(() => {
-               if (alertDiv.parentNode) {
-                   alertDiv.classList.remove('show');
-                   setTimeout(() => alertDiv.remove(), 150);
-               }
-           }, 4000);
-       }
-
-       // Make functions global
-       window.visitLink = visitLink;
-       window.editLink = editLink;
-       window.toggleMark = toggleMark;
-       window.copyLink = copyLink;
-       window.deleteLink = deleteLink;
-
-       // Smooth scroll for better UX
-       document.documentElement.style.scrollBehavior = 'smooth';
-
-       // Add loading states for better feedback
-       function setButtonLoading(button, loading = true) {
-           if (loading) {
-               button.disabled = true;
-               const originalText = button.innerHTML;
-               button.dataset.originalText = originalText;
-               button.innerHTML = '<div class="spinner me-2"></div>Đang xử lý...';
-           } else {
-               button.disabled = false;
-               button.innerHTML = button.dataset.originalText;
-           }
-       }
-
-       // Enhanced form validation
-       function validateForm(form) {
-           const inputs = form.querySelectorAll('input[required]');
-           let isValid = true;
-           
-           inputs.forEach(input => {
-               if (!input.value.trim()) {
-                   input.classList.add('is-invalid');
-                   isValid = false;
-               } else {
-                   input.classList.remove('is-invalid');
-               }
-           });
-           
-           return isValid;
-       }
-
-       // Auto-save draft (optional enhancement)
-       let draftTimer;
-       function saveDraft() {
-           const formData = {
-               url: document.getElementById('linkUrl').value,
-               inputSource: document.getElementById('linkInputSource').value,
-               description: document.getElementById('linkDescription').value,
-               startTime: document.getElementById('startTime').value,
-               endTime: document.getElementById('endTime').value
-           };
-           
-           if (formData.url.trim()) {
-               localStorage.setItem('linkDraft', JSON.stringify(formData));
-           }
-       }
-
-       function loadDraft() {
-           const draft = localStorage.getItem('linkDraft');
-           if (draft) {
-               const data = JSON.parse(draft);
-               document.getElementById('linkUrl').value = data.url || '';
-               document.getElementById('linkInputSource').value = data.inputSource || '';
-               document.getElementById('linkDescription').value = data.description || '';
-               document.getElementById('startTime').value = data.startTime || '';
-               document.getElementById('endTime').value = data.endTime || '';
-           }
-       }
-
-       function clearDraft() {
-           localStorage.removeItem('linkDraft');
-       }
-
-       // Set up auto-save
-       ['linkUrl', 'linkInputSource', 'linkDescription', 'startTime', 'endTime'].forEach(id => {
-           const element = document.getElementById(id);
-           element.addEventListener('input', () => {
-               clearTimeout(draftTimer);
-               draftTimer = setTimeout(saveDraft, 1000);
-           });
-       });
-
-       // Load draft on page load
-       document.addEventListener('DOMContentLoaded', loadDraft);
-
-       // Clear draft on successful form submission
-       addLinkForm.addEventListener('submit', () => {
-           setTimeout(clearDraft, 1000);
-       });
-
-       // Keyboard shortcuts
-       document.addEventListener('keydown', (e) => {
-           // Ctrl/Cmd + Enter to submit form
-           if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-               const activeElement = document.activeElement;
-               if (activeElement && activeElement.form === addLinkForm) {
-                   e.preventDefault();
-                   addLinkForm.dispatchEvent(new Event('submit'));
-               }
-           }
-           
-           // Escape to close modal
-           if (e.key === 'Escape' && editModal._isShown) {
-               editModal.hide();
-           }
-       });
-
-       // Focus management
-       document.getElementById('editModal').addEventListener('shown.bs.modal', () => {
-           document.getElementById('editLinkUrl').focus();
-       });
-
-       // Enhanced error handling with retry
-       let retryCount = 0;
-       const maxRetries = 3;
-
-       async function retryOperation(operation, context = '') {
-           try {
-               retryCount = 0;
-               return await operation();
-           } catch (error) {
-               if (retryCount < maxRetries && error.code !== 'permission-denied') {
-                   retryCount++;
-                   showAlert(`Thử lại lần ${retryCount}/${maxRetries}...`, 'info');
-                   setTimeout(() => retryOperation(operation, context), 1000 * retryCount);
-               } else {
-                   console.error(`Error in ${context}:`, error);
-                   showAlert(`Lỗi: ${error.message}`, 'danger');
-               }
-           }
-       }
-
-       // Performance optimization: debounce search
-       function debounce(func, wait) {
-           let timeout;
-           return function executedFunction(...args) {
-               const later = () => {
-                   clearTimeout(timeout);
-                   func(...args);
+                   createdAt: new Date(),
+                   isMarked: false,
+                   markedAt: null // Thêm trường markedAt để sắp xếp
                };
-               clearTimeout(timeout);
-               timeout = setTimeout(later, wait);
-           };
+               
+               await addDoc(collection(db, 'links'), linkData);
+               
+               showAlert('Thêm link thành công!', 'success');
+               addLinkForm.reset();
+               loadLinks();
+               
+           } catch (error) {
+               console.error('Error adding link:', error);
+               showAlert('Có lỗi xảy ra khi thêm link!', 'danger');
+           }
        }
 
-       // Add search functionality (optional)
-       function addSearchFeature() {
-           const searchInput = document.createElement('input');
-           searchInput.type = 'text';
-           searchInput.className = 'form-control mb-3';
-           searchInput.placeholder = 'Tìm kiếm links...';
-           searchInput.id = 'searchInput';
-           
-           const firstFolderContent = document.querySelector('.folder-content');
-           firstFolderContent.insertBefore(searchInput, firstFolderContent.firstChild);
-           
-           const debouncedSearch = debounce((query) => {
-               filterLinks(query);
-           }, 300);
-           
-           searchInput.addEventListener('input', (e) => {
-               debouncedSearch(e.target.value);
-           });
-       }
-
-       function filterLinks(query) {
-           if (!query.trim()) {
+       // Load links
+       async function loadLinks() {
+           try {
+               showLoading(unmarkedLinksList);
+               showLoading(markedLinksList);
+               
+               const querySnapshot = await getDocs(collection(db, 'links'));
+               
+               allLinks = [];
+               querySnapshot.forEach((doc) => {
+                   allLinks.push({
+                       id: doc.id,
+                       ...doc.data()
+                   });
+               });
+               
                displayLinks();
+               
+           } catch (error) {
+               console.error('Error loading links:', error);
+               showAlert('Lỗi tải dữ liệu!', 'danger');
+           }
+       }
+
+       function showLoading(container) {
+           container.innerHTML = `
+               <div class="loading">
+                   <div class="spinner"></div>
+                   Đang tải...
+               </div>
+           `;
+       }
+
+       // Display links với sắp xếp theo thời gian đánh dấu
+       function displayLinks() {
+           // Sắp xếp links thường theo thời gian tạo (mới nhất trước)
+           const unmarkedLinks = allLinks.filter(link => !link.isMarked)
+               .sort((a, b) => {
+                   const aTime = a.createdAt?.seconds || 0;
+                   const bTime = b.createdAt?.seconds || 0;
+                   return bTime - aTime;
+               });
+           
+           // Sắp xếp links yêu thích theo thời gian đánh dấu (mới đánh dấu trước)
+           const markedLinks = allLinks.filter(link => link.isMarked)
+               .sort((a, b) => {
+                   const aMarkedTime = a.markedAt?.seconds || a.createdAt?.seconds || 0;
+                   const bMarkedTime = b.markedAt?.seconds || b.createdAt?.seconds || 0;
+                   return bMarkedTime - aMarkedTime;
+               });
+           
+           document.getElementById('unmarkedCount').textContent = unmarkedLinks.length;
+           document.getElementById('markedCount').textContent = markedLinks.length;
+           
+           renderLinks(unmarkedLinks, unmarkedLinksList, 'Chưa có link nào');
+           renderLinks(markedLinks, markedLinksList, 'Chưa có link yêu thích');
+       }
+
+       function renderLinks(links, container, emptyMessage) {
+           if (links.length === 0) {
+               container.innerHTML = `
+                   <div class="empty-state">
+                       <i class="fas fa-folder-open"></i>
+                       <h6>${emptyMessage}</h6>
+                       <p class="mb-0">Thêm link mới để bắt đầu</p>
+                   </div>
+               `;
                return;
            }
            
-           const filtered = allLinks.filter(link => 
-               link.title.toLowerCase().includes(query.toLowerCase()) ||
-               link.url.toLowerCase().includes(query.toLowerCase()) ||
-               (link.description && link.description.toLowerCase().includes(query.toLowerCase()))
-           );
-           
-           const unmarkedFiltered = filtered.filter(link => !link.isMarked);
-           const markedFiltered = filtered.filter(link => link.isMarked);
-           
-           document.getElementById('unmarkedCount').textContent = unmarkedFiltered.length;
-           document.getElementById('markedCount').textContent = markedFiltered.length;
-           
-           renderLinks(unmarkedFiltered, unmarkedLinksList, 'Không tìm thấy link nào');
-           renderLinks(markedFiltered, markedLinksList, 'Không tìm thấy link yêu thích nào');
-       }
+           container.innerHTML = links.map(link => `
+               <div class="link-item ${link.inputSource ? 'link-item-' + link.inputSource : ''} ${link.isMarked ? 'starred' : ''} fade-in">
+                   <div class="d-flex justify-content-between align-items-start mb-2">
+                       <a href="${link.url}" target="_blank" class="link-title">
+                           ${link.title}
+                           ${link.isMarked ? '<i class="fas fa-star text-warning ms-2"></i>' : ''}
+                       </a>
+                   </div>
+                   
+                   <div class="link-url">${link.url}</div>
+                   
+                   ${(link.startTime || link.endTime || link.quantity) ? `
+                       <div class="time-info">
+                           ${(link.startTime || link.endTime) ? `
+                               <div>
+                                   <i class="fas fa-clock me-1"></i>
+                                   ${link.startTime ? `${link.startTime}` : ''}
+                                   ${link.startTime && link.endTime ? ' - ' : ''}
+                                   ${link.endTime ? `${link.endTime}` : ''}
+                               </div>
+                           ` : ''}
+                           ${link.quantity ? `
+                               <div class="quantity-info">
+                                   <i class="fas fa-box me-1"></i>
+                                   ${link.quantity} sản phẩm
+                               </div>
+                           ` : ''}
+                       </div>
+                   ` : ''}
+                   
+                   ${link.description ? `<div class="link-description">${link.description}</div>` : ''}
+                  
+                  <div class="link-metadata">
+                      <div>
+                          ${link.inputSource ? `<span class="badge badge-${link.inputSource}">
+                              ${getAccountName(link.inputSource)}
+                          </span>` : ''}
+                      </div>
+                      
+                      <div class="link-actions">
+                          <button class="btn-action btn-edit" onclick="window.editLink('${link.id}')" title="Chỉnh sửa">
+                              <i class="fas fa-edit"></i>
+                          </button>
+                          <button class="btn-action btn-star ${link.isMarked ? 'starred' : ''}" onclick="window.toggleMark('${link.id}')" title="${link.isMarked ? 'Bỏ yêu thích' : 'Yêu thích'}">
+                              <i class="fas fa-star"></i>
+                          </button>
+                          <button class="btn-action btn-copy" onclick="window.copyLink('${link.url}')" title="Sao chép">
+                              <i class="fas fa-copy"></i>
+                          </button>
+                          <button class="btn-action btn-delete" onclick="window.deleteLink('${link.id}')" title="Xóa">
+                              <i class="fas fa-trash"></i>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          `).join('');
+      }
 
-       // Initialize search feature
-       setTimeout(addSearchFeature, 1000);
+      // Link actions
+      function editLink(linkId) {
+         const link = allLinks.find(l => l.id === linkId);
+         if (!link) return;
+         
+         document.getElementById('editLinkId').value = linkId;
+         document.getElementById('editLinkUrl').value = link.url;
+         document.getElementById('editLinkInputSource').value = link.inputSource || '';
+         document.getElementById('editLinkQuantity').value = link.quantity || '';
+         document.getElementById('editLinkDescription').value = link.description || '';
+         document.getElementById('editStartTime').value = link.startTime || '';
+         document.getElementById('editEndTime').value = link.endTime || '';
+         
+         editModal.show();
+     }
 
-   </script>
+     async function handleEditSave() {
+         const linkId = document.getElementById('editLinkId').value;
+         const url = document.getElementById('editLinkUrl').value.trim();
+         const inputSource = document.getElementById('editLinkInputSource').value;
+         const quantity = document.getElementById('editLinkQuantity').value;
+         const description = document.getElementById('editLinkDescription').value.trim();
+         const startTime = document.getElementById('editStartTime').value;
+         const endTime = document.getElementById('editEndTime').value;
+         
+         try {
+             const linkRef = doc(db, 'links', linkId);
+             
+             await updateDoc(linkRef, {
+                 url: url,
+                 title: extractTitleFromUrl(url),
+                 inputSource: inputSource,
+                 quantity: quantity ? parseInt(quantity) : null,
+                 description: description,
+                 startTime: startTime,
+                 endTime: endTime,
+                 updatedAt: new Date()
+             });
+             
+             editModal.hide();
+             showAlert('Cập nhật thành công!', 'success');
+             loadLinks();
+             
+         } catch (error) {
+             console.error('Error updating link:', error);
+             showAlert('Có lỗi khi cập nhật!', 'danger');
+         }
+     }
+
+     // Cập nhật toggleMark để lưu thời gian đánh dấu
+     async function toggleMark(linkId) {
+         try {
+             const linkRef = doc(db, 'links', linkId);
+             const link = allLinks.find(l => l.id === linkId);
+             
+             const updateData = {
+                 isMarked: !link.isMarked
+             };
+             
+             // Nếu đang đánh dấu, lưu thời gian đánh dấu
+             if (!link.isMarked) {
+                 updateData.markedAt = new Date();
+             } else {
+                 // Nếu bỏ đánh dấu, xóa thời gian đánh dấu
+                 updateData.markedAt = null;
+             }
+             
+             await updateDoc(linkRef, updateData);
+             
+             loadLinks();
+             
+         } catch (error) {
+             console.error('Error toggling mark:', error);
+             showAlert('Có lỗi khi cập nhật!', 'danger');
+         }
+     }
+
+     async function copyLink(url) {
+         try {
+             await navigator.clipboard.writeText(url);
+             showAlert('Đã sao chép link!', 'success');
+         } catch (error) {
+             showAlert('Không thể sao chép link!', 'danger');
+         }
+     }
+
+     async function deleteLink(linkId) {
+         if (!confirm('Bạn có chắc muốn xóa link này?')) return;
+         
+         try {
+             await deleteDoc(doc(db, 'links', linkId));
+             showAlert('Đã xóa link!', 'success');
+             loadLinks();
+             
+         } catch (error) {
+             console.error('Error deleting link:', error);
+             showAlert('Có lỗi khi xóa link!', 'danger');
+         }
+     }
+
+     // Utility functions
+     function getAccountName(account) {
+         const accounts = {
+             'account1': 'Nick Hoàng',
+             'account2': 'Nick Thoa',  
+             'account3': 'Nick Trọng',
+             'account4': 'Nick Hải',
+             'account5': 'Nick PTrong'
+         };
+         return accounts[account] || account;
+     }
+
+     function extractTitleFromUrl(url) {
+         try {
+             const urlObj = new URL(url);
+             return urlObj.hostname.replace('www.', '');
+         } catch {
+             return url;
+         }
+     }
+
+     function showAlert(message, type) {
+         // Remove existing alerts
+         const existingAlerts = document.querySelectorAll('.alert');
+         existingAlerts.forEach(alert => alert.remove());
+         
+         const alertDiv = document.createElement('div');
+         alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+         alertDiv.style.cssText = `
+             top: 20px;
+             right: 20px;
+             z-index: 9999;
+             min-width: 280px;
+             box-shadow: var(--shadow-lg);
+         `;
+         
+         let icon = '';
+         switch(type) {
+             case 'success': icon = 'fas fa-check-circle'; break;
+             case 'danger': icon = 'fas fa-exclamation-circle'; break;
+             case 'warning': icon = 'fas fa-exclamation-triangle'; break;
+             case 'info': icon = 'fas fa-info-circle'; break;
+             default: icon = 'fas fa-bell';
+         }
+         
+         alertDiv.innerHTML = `
+             <div class="d-flex align-items-center">
+                 <i class="${icon} me-2"></i>
+                 <span>${message}</span>
+             </div>
+             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+         `;
+         
+         document.body.appendChild(alertDiv);
+         
+         // Auto remove after 4 seconds
+         setTimeout(() => {
+             if (alertDiv.parentNode) {
+                 alertDiv.classList.remove('show');
+                 setTimeout(() => alertDiv.remove(), 150);
+             }
+         }, 4000);
+     }
+
+     // Make functions global
+     window.editLink = editLink;
+     window.toggleMark = toggleMark;
+     window.copyLink = copyLink;
+     window.deleteLink = deleteLink;
+
+     // Enhanced search functionality
+     function addSearchFeature() {
+         const searchInput = document.createElement('input');
+         searchInput.type = 'text';
+         searchInput.className = 'form-control mb-3';
+         searchInput.placeholder = 'Tìm kiếm links...';
+         searchInput.id = 'searchInput';
+         
+         const firstFolderContent = document.querySelector('.folder-content');
+         firstFolderContent.insertBefore(searchInput, firstFolderContent.firstChild);
+         
+         const debouncedSearch = debounce((query) => {
+             filterLinks(query);
+         }, 300);
+         
+         searchInput.addEventListener('input', (e) => {
+             debouncedSearch(e.target.value);
+         });
+     }
+
+     function filterLinks(query) {
+         if (!query.trim()) {
+             displayLinks();
+             return;
+         }
+         
+         const filtered = allLinks.filter(link => 
+             link.title.toLowerCase().includes(query.toLowerCase()) ||
+             link.url.toLowerCase().includes(query.toLowerCase()) ||
+             (link.description && link.description.toLowerCase().includes(query.toLowerCase()))
+         );
+         
+         const unmarkedFiltered = filtered.filter(link => !link.isMarked);
+         const markedFiltered = filtered.filter(link => link.isMarked)
+             .sort((a, b) => {
+                 const aMarkedTime = a.markedAt?.seconds || a.createdAt?.seconds || 0;
+                 const bMarkedTime = b.markedAt?.seconds || b.createdAt?.seconds || 0;
+                 return bMarkedTime - aMarkedTime;
+             });
+         
+         document.getElementById('unmarkedCount').textContent = unmarkedFiltered.length;
+         document.getElementById('markedCount').textContent = markedFiltered.length;
+         
+         renderLinks(unmarkedFiltered, unmarkedLinksList, 'Không tìm thấy link nào');
+         renderLinks(markedFiltered, markedLinksList, 'Không tìm thấy link yêu thích nào');
+     }
+
+     function debounce(func, wait) {
+         let timeout;
+         return function executedFunction(...args) {
+             const later = () => {
+                 clearTimeout(timeout);
+                 func(...args);
+             };
+             clearTimeout(timeout);
+             timeout = setTimeout(later, wait);
+         };
+     }
+
+     // Initialize search feature
+     setTimeout(addSearchFeature, 1000);
+
+     // Auto-save draft functionality
+     let draftTimer;
+     function saveDraft() {
+         const formData = {
+             url: document.getElementById('linkUrl').value,
+             inputSource: document.getElementById('linkInputSource').value,
+             quantity: document.getElementById('linkQuantity').value,
+             description: document.getElementById('linkDescription').value,
+             startTime: document.getElementById('startTime').value,
+             endTime: document.getElementById('endTime').value
+         };
+         
+         if (formData.url.trim()) {
+             localStorage.setItem('linkDraft', JSON.stringify(formData));
+         }
+     }
+
+     function loadDraft() {
+         const draft = localStorage.getItem('linkDraft');
+         if (draft) {
+             const data = JSON.parse(draft);
+             document.getElementById('linkUrl').value = data.url || '';
+             document.getElementById('linkInputSource').value = data.inputSource || '';
+             document.getElementById('linkQuantity').value = data.quantity || '';
+             document.getElementById('linkDescription').value = data.description || '';
+             document.getElementById('startTime').value = data.startTime || '';
+             document.getElementById('endTime').value = data.endTime || '';
+         }
+     }
+
+     function clearDraft() {
+         localStorage.removeItem('linkDraft');
+     }
+
+     // Set up auto-save
+     ['linkUrl', 'linkInputSource', 'linkQuantity', 'linkDescription', 'startTime', 'endTime'].forEach(id => {
+         const element = document.getElementById(id);
+         element.addEventListener('input', () => {
+             clearTimeout(draftTimer);
+             draftTimer = setTimeout(saveDraft, 1000);
+         });
+     });
+
+     // Load draft on page load
+     document.addEventListener('DOMContentLoaded', loadDraft);
+
+     // Clear draft on successful form submission
+     addLinkForm.addEventListener('submit', () => {
+         setTimeout(clearDraft, 1000);
+     });
+
+     // Keyboard shortcuts
+     document.addEventListener('keydown', (e) => {
+         // Ctrl/Cmd + Enter to submit form
+         if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+             const activeElement = document.activeElement;
+             if (activeElement && activeElement.form === addLinkForm) {
+                 e.preventDefault();
+                 addLinkForm.dispatchEvent(new Event('submit'));
+             }
+         }
+         
+         // Escape to close modal
+         if (e.key === 'Escape' && editModal._isShown) {
+             editModal.hide();
+         }
+     });
+
+     // Focus management
+     document.getElementById('editModal').addEventListener('shown.bs.modal', () => {
+         document.getElementById('editLinkUrl').focus();
+     });
+
+     // Smooth scroll for better UX
+     document.documentElement.style.scrollBehavior = 'smooth';
+
+ </script>
 </body>
 </html>
